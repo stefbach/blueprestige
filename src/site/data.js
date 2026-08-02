@@ -40,13 +40,13 @@ export const REPERES = [
   { annee: '2024', texte: 'Blue Prestige Mauritius — Flic en Flac & Tamarin.' },
 ]
 
-// Le filtre du bundle portait sur deux côtes fictives. Avec trois biens réels
-// dont les localités exactes ne sont pas connues, filtrer par type est la seule
-// coupe honnête — et la seule qui serve encore à quelque chose.
+// Les trois biens sont à Flic en Flac : filtrer par localité ne trierait rien.
+// Le filtre porte donc sur le domaine, ce qui reste la coupe géographique du
+// bundle d'origine tout en séparant réellement la collection.
 export const FILTRES = [
   { key: 'all', label: 'Tous' },
-  { key: 'villa', label: 'Villa' },
-  { key: 'appartement', label: 'Appartement' },
+  { key: 'anna', label: 'Jardin d’Anna' },
+  { key: 'greencreek', label: 'Greencreek' },
 ]
 
 /**
@@ -68,8 +68,8 @@ export const BIENS = [
   {
     id: 'villa',
     nom: 'La Villa',
-    lieu: 'Île Maurice', // À COMPLÉTER : localité exacte
-    coast: 'villa',
+    lieu: 'Jardin d’Anna · Flic en Flac',
+    coast: 'anna',
     statut: 'Visite sur demande', // À COMPLÉTER : à vendre / à louer
     prix: 'Prix sur demande', // À COMPLÉTER
     surface: '≈ 237 m² utiles · deux niveaux',
@@ -94,14 +94,14 @@ export const BIENS = [
   {
     id: 'rooftop',
     nom: 'Le Rooftop',
-    lieu: 'Île Maurice', // À COMPLÉTER : localité exacte
-    coast: 'appartement',
-    statut: 'Visite sur demande', // À COMPLÉTER
+    lieu: 'Greencreek · Flic en Flac',
+    coast: 'greencreek',
+    statut: 'Visite sur demande', // À COMPLÉTER : à vendre / à louer
     prix: 'Prix sur demande', // À COMPLÉTER
     surface: 'Terrasse privative · vue mer', // À COMPLÉTER : surface
     tour: '/visite/?bien=rooftop',
     cover: '/photos/rooftop/terrasse-01.jpg',
-    desc: 'Dernier étage dans une résidence à piscine à débordement. Terrasse privative en deck bois, vue frontale sur la montagne et sur l’océan.',
+    desc: 'Dernier étage du domaine Greencreek, résidence à piscine à débordement. Terrasse privative en deck bois, vue frontale sur la montagne et sur l’océan.',
     specs: ['3 chambres', 'Terrasse privative', 'Vue mer', 'Piscine de résidence'],
     oeuvre: 'Serenity of Motion',
     oeuvreImg: A + '2299225_1_l.jpg',
@@ -119,14 +119,14 @@ export const BIENS = [
   {
     id: 'townhouse',
     nom: 'Le Town House',
-    lieu: 'Île Maurice', // À COMPLÉTER : localité exacte
-    coast: 'appartement',
-    statut: 'Visite sur demande', // À COMPLÉTER
+    lieu: 'Jardin d’Anna · Flic en Flac',
+    coast: 'anna',
+    statut: 'Visite sur demande', // À COMPLÉTER : à vendre / à louer
     prix: 'Prix sur demande', // À COMPLÉTER
     surface: 'Duplex · terrasse de plain-pied', // À COMPLÉTER : surface
     tour: '/visite/?bien=townhouse',
     cover: '/photos/townhouse/terrasse-01.jpg',
-    desc: 'Duplex du même programme, séjour traversant sur cuisine ouverte et terrasse de plain-pied sous pergola, ouverte sur le jardin paysagé.',
+    desc: 'Duplex du domaine Jardin d’Anna, séjour traversant sur cuisine ouverte et terrasse de plain-pied sous pergola, ouverte sur le jardin paysagé.',
     specs: ['Duplex', 'Terrasse sous pergola', 'Jardin paysagé', 'Escalier pierre'],
     oeuvre: 'Earth Vision',
     oeuvreImg: A + '2299255_1_l.jpg',
