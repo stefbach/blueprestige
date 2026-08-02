@@ -2,12 +2,10 @@
  * Manifeste de la visite photo.
  *
  * La visite se fait sur les VRAIES photos du bien — pas sur un modèle reconstitué.
- * Chaque entrée pointe un fichier de `public/photos/`. Tant qu'un fichier est
- * absent, la vue affiche un emplacement explicite indiquant la photo attendue,
- * ce qui permet de préparer la scénographie avant que les images soient là.
+ * Chaque entrée pointe un fichier de `public/photos/`.
  *
- * Pour ajouter une photo : déposer le fichier dans `public/photos/` et ajouter
- * une ligne ici. Aucun autre fichier à toucher.
+ * `staged` désigne, quand elle existe, la version remise en scène de la même vue
+ * (`public/photos/staged/`) : c'est elle qui alimente le comparateur avant/après.
  *
  * `room` fait le lien avec le plan (`src/villa/plan.js`) : cliquer une pièce du
  * plan amène aux photos correspondantes.
@@ -16,24 +14,15 @@
 export const TOUR = [
   // ─── Extérieur ──────────────────────────────────────────────────
   {
-    id: 'facade',
+    id: 'exterieur',
     room: null,
     level: 0,
-    titre: 'Façade jardin',
+    titre: 'Façade et jardin',
     photos: [
-      { file: 'ext-facade-01.jpg', caption: 'Façade sur jardin — deux niveaux, balcon filant, double porte d’entrée sous auvent' },
-      { file: 'ext-jardin-01.jpg', caption: 'Pelouse, arbres fruitiers et muret surmonté d’une clôture bois' },
-      { file: 'ext-jardin-02.jpg', caption: 'Terrasse dallée et jardin clos' },
-    ],
-  },
-  {
-    id: 'exterieur-service',
-    room: null,
-    level: 0,
-    titre: 'Accès et terrasse de service',
-    photos: [
-      { file: 'ext-escalier-01.jpg', caption: 'Escalier extérieur desservant l’étage' },
-      { file: 'ext-terrasse-01.jpg', caption: 'Terrasse carrelée, deck bois, store banne et évier extérieur' },
+      { file: 'ext-facade-01.jpg', caption: 'Façade sur jardin — deux niveaux, balcon filant, double porte d’entrée en bois sous auvent' },
+      { file: 'ext-jardin-01.jpg', caption: 'Jardin clos engazonné, muret surmonté d’une clôture bois' },
+      { file: 'ext-terrasse-01.jpg', caption: 'Terrasse de service — deck bois, store banne, évier extérieur' },
+      { file: 'ext-escalier-01.jpg', caption: 'Escalier extérieur desservant l’étage de façon indépendante' },
     ],
   },
 
@@ -44,9 +33,11 @@ export const TOUR = [
     level: 0,
     titre: 'Entrée et escalier',
     photos: [
-      { file: 'rez-entree-01.jpg', caption: 'Hall d’entrée — porte bois à imposte vitrée, parquet à bâtons rompus' },
-      { file: 'rez-entree-02.jpg', caption: 'Escalier tournant vu du palier, départ à volute' },
-      { file: 'rez-entree-03.jpg', caption: 'Arche vers la cuisine et porte coulissante à galandage' },
+      { file: 'rez-entree-01.jpg', caption: 'Hall d’entrée — porte en bois massif à imposte vitrée, parquet à bâtons rompus' },
+      { file: 'rez-entree-02.jpg', caption: 'Escalier bois vu du palier, départ à volute sur le hall' },
+      { file: 'rez-entree-03.jpg', caption: 'Porte coulissante à galandage et arche vers l’escalier' },
+      { file: 'rez-entree-04.jpg', caption: 'Depuis la salle à manger : la porte à galandage ouverte sur la circulation' },
+      { file: 'rez-entree-05.jpg', caption: 'Vue plongeante de l’escalier vers la cuisine à travers l’arche' },
     ],
   },
   {
@@ -55,8 +46,9 @@ export const TOUR = [
     level: 0,
     titre: 'Séjour',
     photos: [
-      { file: 'rez-salon-01.jpg', caption: 'Séjour — canapé d’angle, double porte vitrée bois vers la salle à manger' },
-      { file: 'rez-salon-02.jpg', caption: 'Baies vitrées plein sud et coin télévision' },
+      { file: 'rez-salon-01.jpg', caption: 'Séjour — canapé d’angle, double porte vitrée en bois, ouverture sur la salle à manger' },
+      { file: 'rez-salon-02.jpg', caption: 'Baies vitrées plein sud et coin télévision', staged: 'rez-salon-02.jpg' },
+      { file: 'rez-salon-03.jpg', caption: 'Le séjour depuis l’angle opposé' },
     ],
   },
   {
@@ -65,9 +57,10 @@ export const TOUR = [
     level: 0,
     titre: 'Salle à manger',
     photos: [
-      { file: 'rez-sam-01.jpg', caption: 'Table ovale en bois massif, dix couverts' },
-      { file: 'rez-sam-02.jpg', caption: 'Baie coulissante sur la terrasse et le jardin' },
-      { file: 'rez-sam-03.jpg', caption: 'Ouverture cadrée bois sur la cuisine' },
+      { file: 'rez-sam-01.jpg', caption: 'Salle à manger — table ovale dix couverts, baie sur le jardin, entrée à droite', staged: 'rez-sam-01.jpg' },
+      { file: 'rez-sam-02.jpg', caption: 'Table en bois massif et enfilade vers le séjour' },
+      { file: 'rez-sam-03.jpg', caption: 'Baie coulissante sur la terrasse et le salon de jardin' },
+      { file: 'rez-sam-04.jpg', caption: 'Large ouverture cadrée bois sur la cuisine' },
     ],
   },
   {
@@ -76,9 +69,8 @@ export const TOUR = [
     level: 0,
     titre: 'Cuisine',
     photos: [
-      { file: 'rez-cuisine-01.jpg', caption: 'Îlot central plan de travail bois, trois tabourets' },
-      { file: 'rez-cuisine-02.jpg', caption: 'Façades shaker crème, crédence et sol en carreaux à motifs' },
-      { file: 'rez-cuisine-03.jpg', caption: 'Double four encastré et accès terrasse' },
+      { file: 'rez-cuisine-01.jpg', caption: 'Îlot central plan de travail bois, trois tabourets, double four encastré' },
+      { file: 'rez-cuisine-02.jpg', caption: 'Façades shaker crème, crédence et sol en carreaux à motifs, plaque gaz' },
     ],
   },
   {
@@ -87,7 +79,7 @@ export const TOUR = [
     level: 0,
     titre: 'Chambre du rez',
     photos: [
-      { file: 'rez-chambre-01.jpg', caption: 'Chambre avec bureau, climatiseur et store bateau' },
+      { file: 'rez-chambre-01.jpg', caption: 'Chambre avec espace bureau, climatiseur et store bateau' },
     ],
   },
   {
@@ -107,8 +99,8 @@ export const TOUR = [
     level: 1,
     titre: 'Salon d’étage',
     photos: [
-      { file: 'etage-salon-01.jpg', caption: 'Plafond cathédrale, pignon vitré, baie coulissante sur la terrasse' },
-      { file: 'etage-salon-02.jpg', caption: 'Vue vers la trémie et l’arrivée de l’escalier' },
+      { file: 'etage-salon-01.jpg', caption: 'Plafond cathédrale, pignon vitré, baie coulissante sur la terrasse', staged: 'etage-salon-01.jpg' },
+      { file: 'etage-salon-02.jpg', caption: 'Le salon vers la trémie et l’arrivée de l’escalier' },
     ],
   },
   {
@@ -126,7 +118,7 @@ export const TOUR = [
     level: 1,
     titre: 'Chambre 2',
     photos: [
-      { file: 'etage-chambre2-01.jpg', caption: 'Baie coulissante sur balcon, parquet chêne, suspension rotin' },
+      { file: 'etage-chambre2-01.jpg', caption: 'Baie coulissante sur balcon, parquet chêne, suspension en rotin', staged: 'etage-chambre2-01.jpg' },
     ],
   },
   {
@@ -135,8 +127,7 @@ export const TOUR = [
     level: 1,
     titre: 'Chambre 3',
     photos: [
-      { file: 'etage-chambre3-01.jpg', caption: 'Armoire et commode bois, miroir psyché' },
-      { file: 'etage-chambre3-02.jpg', caption: 'Sous rampant, lit double et chevets' },
+      { file: 'etage-chambre3-01.jpg', caption: 'Armoire et commode en bois massif, sous rampant' },
     ],
   },
   {
@@ -145,7 +136,16 @@ export const TOUR = [
     level: 1,
     titre: 'Chambre 4',
     photos: [
-      { file: 'etage-chambre4-01.jpg', caption: 'Chambre sous rampant, climatiseur mural' },
+      { file: 'etage-chambre4-01.jpg', caption: 'Armoire, miroir psyché et grande porte en bois' },
+    ],
+  },
+  {
+    id: 'chambre4',
+    room: null,
+    level: 1,
+    titre: 'Chambre 5',
+    photos: [
+      { file: 'etage-chambre5-01.jpg', caption: 'Chambre sous rampant, climatiseur, chevets de part et d’autre' },
     ],
   },
   {
@@ -164,6 +164,21 @@ export const TOUR = [
     titre: 'Salle d’eau',
     photos: [
       { file: 'etage-sde-01.jpg', caption: 'Douche paroi verre, WC suspendu, armoire de toilette miroir' },
+    ],
+  },
+
+  // ─── Seconde unité ──────────────────────────────────────────────
+  // Murs blancs, menuiseries métal noir, parquet foncé : ce salon ne correspond
+  // à aucune pièce du corps principal. Même clôture bois au fond que le jardin,
+  // donc même ensemble — vraisemblablement une seconde unité sur la parcelle.
+  {
+    id: 'annexe',
+    room: null,
+    level: 0,
+    titre: 'Salon — seconde unité',
+    photos: [
+      { file: 'annexe-salon-01.jpg', caption: 'Grande baie à petits bois métal sur le jardin et le portail' },
+      { file: 'annexe-salon-02.jpg', caption: 'Volume traversant, lustre à pampilles, parquet foncé' },
     ],
   },
 ]
@@ -193,4 +208,5 @@ export function firstIndexForStep(stepId) {
   return SEQUENCE.findIndex((p) => p.stepId === stepId)
 }
 
-export const PHOTO_BASE = 'photos/'
+export const PHOTO_BASE = '/photos/'
+export const STAGED_BASE = '/photos/staged/'

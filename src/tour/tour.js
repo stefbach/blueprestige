@@ -6,7 +6,7 @@
  * ne ressemble pas au bien et dessert la présentation.
  */
 import './tour.css'
-import { PHOTO_BASE, SEQUENCE, TOUR, firstIndexForRoom, firstIndexForStep } from './photos.js'
+import { PHOTO_BASE, SEQUENCE, STAGED_BASE, TOUR, firstIndexForRoom, firstIndexForStep } from './photos.js'
 import { LEVELS, roomById } from '../villa/plan.js'
 import { Plan2D } from '../viewer/plan2d.js'
 
@@ -22,6 +22,7 @@ const frames = new Map()
 
 const current = () => SEQUENCE[index]
 const src = (photo) => PHOTO_BASE + photo.file
+const stagedSrc = (photo) => (photo.staged ? STAGED_BASE + photo.staged : null)
 
 /** Pièces du plan qui ont au moins une photo — les seules cliquables. */
 const roomsWithPhotos = new Set(SEQUENCE.map((p) => p.room).filter(Boolean))
@@ -47,9 +48,61 @@ function frameFor(i) {
   })
   el.appendChild(img)
 
+  const staged = stagedSrc(photo)
+  if (staged) el.appendChild(comparator(photo, staged))
+
   stage.insertBefore(el, stage.firstChild)
   frames.set(i, el)
   return el
+}
+
+/**
+ * Comparateur avant / après : la version remise en scène est superposée à la
+ * photo réelle et révélée par un volet que l'on fait glisser. Le volet écrit
+ * directement dans le style — passer par un re-rendu saccaderait au pointermove.
+ */
+function comparator(photo, stagedUrl) {
+  const wrap = document.createElement('div')
+  wrap.className = 'compare'
+  wrap.innerHTML = `
+    <div class="compare-after" style="clip-path:inset(0 0 0 50%)">
+      <img src="${stagedUrl}" alt="${photo.caption} — remise en scène" decoding="async" />
+    </div>
+    <div class="compare-handle" style="left:50%"><span>↔</span></div>
+    <span class="compare-tag left">Avant</span>
+    <span class="compare-tag right">Après — home staging</span>`
+
+  const after = wrap.querySelector('.compare-after')
+  const handle = wrap.querySelector('.compare-handle')
+
+  const move = (clientX) => {
+    const r = wrap.getBoundingClientRect()
+    const pct = Math.max(2, Math.min(98, ((clientX - r.left) / r.width) * 100))
+    after.style.clipPath = `inset(0 0 0 ${pct}%)`
+    handle.style.left = `${pct}%`
+  }
+
+  let dragging = false
+  wrap.addEventListener('pointerdown', (e) => {
+    dragging = true
+    wrap.setPointerCapture(e.pointerId)
+    move(e.clientX)
+    e.stopPropagation() // sinon le balayage change de photo
+  })
+  wrap.addEventListener('pointermove', (e) => {
+    if (dragging) move(e.clientX)
+  })
+  const end = (e) => {
+    dragging = false
+    wrap.releasePointerCapture?.(e.pointerId)
+  }
+  wrap.addEventListener('pointerup', end)
+  wrap.addEventListener('pointercancel', end)
+
+  // une image de staging manquante fait disparaître le comparateur
+  wrap.querySelector('img').addEventListener('error', () => wrap.remove())
+
+  return wrap
 }
 
 /** Emplacement explicite quand le fichier n'est pas encore déposé. */
@@ -58,7 +111,7 @@ function missingSlot(photo) {
   box.className = 'missing'
   box.innerHTML = `
     <span class="missing-tag">Photo attendue</span>
-    <span class="missing-file">public/photos/${photo.file}</span>
+    <span class="missing-file">/photos/${photo.file}</span>
     <p class="missing-caption">${photo.caption}</p>`
   return box
 }

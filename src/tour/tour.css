@@ -471,3 +471,83 @@ body {
     bottom: 18px;
   }
 }
+
+/* ─── Comparateur avant / après ──────────────────────────────── */
+.compare {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+}
+
+.compare-after {
+  position: absolute;
+  inset: 0;
+}
+
+.compare-after img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: none;
+}
+
+.compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #fff;
+  box-shadow: 0 0 18px rgba(11, 18, 54, 0.55);
+  pointer-events: none;
+}
+
+.compare-handle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  color: var(--bleu);
+  font-size: 15px;
+  box-shadow: 0 14px 30px -14px rgba(11, 18, 54, 0.7);
+}
+
+.compare-tag {
+  position: absolute;
+  top: 84px;
+  padding: 9px 15px;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.compare-tag.left {
+  left: 0;
+  background: rgba(255, 255, 255, 0.92);
+  color: #6b739e;
+}
+
+.compare-tag.right {
+  right: 0;
+  background: var(--bleu);
+  color: #fff;
+}
+
+@media (max-width: 860px) {
+  .compare-tag {
+    top: 68px;
+  }
+  .compare-handle span {
+    width: 44px;
+    height: 44px;
+  }
+}
