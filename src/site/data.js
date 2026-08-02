@@ -50,17 +50,17 @@ export const FILTRES = [
 ]
 
 /**
- * Les trois biens réellement présentés. Ils remplacent les biens de démonstration
- * du bundle de design.
+ * Les quatre biens réellement présentés. Ils remplacent les biens de
+ * démonstration du bundle de design.
  *
- * ⚠️ DONNÉES COMMERCIALES À COMPLÉTER. Les prix, statuts et localités exactes ne
- * sont pas connus : ils sont volontairement laissés en « sur demande » plutôt
- * qu'inventés — un prix erroné sur une annonce engage plus qu'il ne rend service.
- * Chercher `À COMPLÉTER` pour les retrouver.
+ * ⚠️ DONNÉES COMMERCIALES À COMPLÉTER. Les prix et les statuts (vente/location)
+ * ne sont pas connus : ils sont volontairement laissés en « sur demande »
+ * plutôt qu'inventés — un prix erroné sur une annonce engage plus qu'il ne rend
+ * service. Chercher `À COMPLÉTER` pour les retrouver.
  *
- * Les surfaces de la villa viennent du relevé (`src/villa/plan.js`) : estimées à
- * ±10 % depuis les photos, pas mesurées sur site. Celles du rooftop et du town
- * house ne sont pas connues.
+ * Les localités sont confirmées. Les surfaces ne le sont pas : celle de la villa
+ * vient du relevé (`src/villa/plan.js`), estimée à ±10 % depuis les photos et
+ * non mesurée sur site ; les trois autres ne sont pas connues.
  *
  * `tour` pointe la visite photo correspondante.
  */
