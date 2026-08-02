@@ -10,6 +10,7 @@
 import { TOUR as VILLA_TOUR } from './photos.js'
 import { ROOFTOP_TOUR } from './rooftop.js'
 import { TOWNHOUSE_TOUR } from './townhouse.js'
+import { TAMARIN_TOUR } from './tamarin.js'
 import { LEVELS } from '../villa/plan.js'
 
 /** Aplatit un manifeste en séquence linéaire, en propageant le contexte d'étape. */
@@ -59,6 +60,16 @@ export const PROPERTIES = [
     hasPlan: false,
     levels: [],
     note: 'Même programme que Le Rooftop, logement distinct.',
+  },
+  {
+    id: 'tamarin',
+    nom: 'L’Appartement',
+    sousTitre: 'Tamarin · piscine privative',
+    steps: TAMARIN_TOUR,
+    sequence: flatten(TAMARIN_TOUR, '/photos/tamarin/', '/photos/tamarin/staged/'),
+    hasPlan: false,
+    levels: [],
+    note: 'Duplex avec piscine privative, résidence paysagée.',
   },
 ]
 

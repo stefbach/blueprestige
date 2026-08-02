@@ -40,13 +40,13 @@ export const REPERES = [
   { annee: '2024', texte: 'Blue Prestige Mauritius — Flic en Flac & Tamarin.' },
 ]
 
-// Les trois biens sont à Flic en Flac : filtrer par localité ne trierait rien.
-// Le filtre porte donc sur le domaine, ce qui reste la coupe géographique du
-// bundle d'origine tout en séparant réellement la collection.
+// Avec un quatrième bien à Tamarin, la coupe par côte du bundle d'origine
+// redevient la bonne : Flic en Flac / Tamarin. Le domaine (Jardin d'Anna,
+// Greencreek) reste indiqué dans le lieu de chaque fiche.
 export const FILTRES = [
   { key: 'all', label: 'Tous' },
-  { key: 'anna', label: 'Jardin d’Anna' },
-  { key: 'greencreek', label: 'Greencreek' },
+  { key: 'flic', label: 'Flic en Flac' },
+  { key: 'tamarin', label: 'Tamarin' },
 ]
 
 /**
@@ -69,7 +69,7 @@ export const BIENS = [
     id: 'villa',
     nom: 'La Villa',
     lieu: 'Jardin d’Anna · Flic en Flac',
-    coast: 'anna',
+    coast: 'flic',
     statut: 'Visite sur demande', // À COMPLÉTER : à vendre / à louer
     prix: 'Prix sur demande', // À COMPLÉTER
     surface: '≈ 237 m² utiles · deux niveaux',
@@ -95,7 +95,7 @@ export const BIENS = [
     id: 'rooftop',
     nom: 'Le Rooftop',
     lieu: 'Greencreek · Flic en Flac',
-    coast: 'greencreek',
+    coast: 'flic',
     statut: 'Visite sur demande', // À COMPLÉTER : à vendre / à louer
     prix: 'Prix sur demande', // À COMPLÉTER
     surface: 'Terrasse privative · vue mer', // À COMPLÉTER : surface
@@ -120,7 +120,7 @@ export const BIENS = [
     id: 'townhouse',
     nom: 'Le Town House',
     lieu: 'Jardin d’Anna · Flic en Flac',
-    coast: 'anna',
+    coast: 'flic',
     statut: 'Visite sur demande', // À COMPLÉTER : à vendre / à louer
     prix: 'Prix sur demande', // À COMPLÉTER
     surface: 'Duplex · terrasse de plain-pied', // À COMPLÉTER : surface
@@ -138,6 +138,31 @@ export const BIENS = [
       { label: 'Chambre', ga: '3 / 2 / 5 / 4', surface: '—', lumiere: 'Est', oeuvre: 'Passion Palette', img: '/photos/townhouse/chambre-01.jpg', slot: 'Chambre du duplex', texte: 'Frise géométrique en tête de lit, tête de lit tissu, palette claire.' },
       { label: 'Salle d’eau', ga: '3 / 4 / 5 / 5', surface: '—', lumiere: 'Jalousie', oeuvre: 'The Blue', img: '/photos/townhouse/sde-01.jpg', slot: 'Salle d’eau', texte: 'Vasque posée sur plan pierre, WC suspendu, jalousie ventilée.' },
       { label: 'Terrasse jardin', ga: '3 / 5 / 5 / 7', surface: 'Plain-pied', lumiere: 'Plein sud', oeuvre: 'Rise Like a Sun', img: '/photos/townhouse/terrasse-01.jpg', slot: 'Terrasse sous pergola', texte: 'Pergola bois, table teck, haie taillée et palmiers. De plain-pied avec le séjour — la terrasse est une pièce de plus.' },
+    ],
+  },
+  {
+    id: 'tamarin',
+    nom: 'L’Appartement',
+    lieu: 'Tamarin',
+    coast: 'tamarin',
+    statut: 'Visite sur demande', // À COMPLÉTER : à vendre / à louer
+    prix: 'Prix sur demande', // À COMPLÉTER
+    surface: 'Duplex · piscine privative', // À COMPLÉTER : surface
+    tour: '/visite/?bien=tamarin',
+    cover: '/photos/tamarin/piscine-01.jpg',
+    desc: 'Duplex de plain-pied à Tamarin, séjour ouvert sur une terrasse couverte et sa piscine privative. Trois chambres, dont une suite sous grande hauteur.',
+    specs: ['3 chambres', 'Piscine privative', 'Terrasse couverte', 'Résidence paysagée'],
+    oeuvre: 'Deep Blue Lagoon',
+    oeuvreImg: A + '2299265_1_l.jpg',
+    slot: 'L’Appartement — piscine privative',
+    pieces: [
+      { label: 'Piscine', ga: '1 / 1 / 3 / 4', surface: 'Privative', lumiere: 'Plein soleil', oeuvre: 'Deep Blue', img: '/photos/tamarin/piscine-01.jpg', slot: 'Piscine privative', texte: 'Bassin à margelle basalte, deck carrelé, haie taillée jusqu’au regard : la piscine est à l’appartement, pas à la résidence.' },
+      { label: 'Terrasse', ga: '1 / 4 / 3 / 7', surface: 'Couverte', lumiere: 'Abritée', oeuvre: 'Rise Like a Sun', img: '/photos/tamarin/terrasse-01.jpg', slot: 'Terrasse couverte', texte: 'Table huit couverts et barbecue sous dalle, claustra bois en fond. On y mange toute l’année.' },
+      { label: 'Séjour', ga: '3 / 1 / 4 / 3', surface: 'Traversant', lumiere: 'Ouest', oeuvre: 'The Blue', img: '/photos/tamarin/salon-01.jpg', slot: 'Séjour', texte: 'Baie coulissante sur toute la largeur : le séjour, la terrasse et le bassin ne font qu’un seul volume.' },
+      { label: 'Cuisine', ga: '3 / 3 / 5 / 5', surface: 'En L', lumiere: 'Nord', oeuvre: 'Summer', img: '/photos/tamarin/cuisine-01.jpg', slot: 'Cuisine', texte: 'Façades bois et laque, four et micro-ondes encastrés, plan traversant. La table de six est dans la cuisine, pas à côté.' },
+      { label: 'Entrée', ga: '3 / 5 / 4 / 7', surface: '—', lumiere: 'Zénithale', oeuvre: 'The Curve', img: '/photos/tamarin/entree-01.jpg', slot: 'Entrée et escalier', texte: 'Claustra bois toute hauteur devant l’escalier : l’entrée sépare sans fermer, et laisse passer la lumière.' },
+      { label: 'Chambre principale', ga: '4 / 5 / 5 / 7', surface: 'Suite', lumiere: 'Est', oeuvre: 'Breath of Light', img: '/photos/tamarin/chambre1-01.jpg', slot: 'Suite principale', texte: 'Sous grande hauteur, tête de lit velours, ventilateur de plafond et accès direct à la terrasse.' },
+      { label: 'Chambres 2 & 3', ga: '4 / 1 / 5 / 3', surface: '2 chambres', lumiere: 'Sud', oeuvre: 'The 7 Hearts', img: '/photos/tamarin/chambre3-01.jpg', slot: 'Chambres', texte: 'Une chambre double en teck massif et une chambre à lits jumeaux — la configuration qui fait vendre en location familiale.' },
     ],
   },
 ]
