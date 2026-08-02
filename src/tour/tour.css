@@ -551,3 +551,49 @@ body {
     height: 44px;
   }
 }
+
+/* ─── Sélecteur de bien ──────────────────────────────────────── */
+.bien-switch {
+  display: flex;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.bien-chip {
+  padding: 8px 14px;
+  background: rgba(11, 18, 54, 0.55);
+  color: var(--texte-doux);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+}
+
+.bien-chip:hover {
+  color: #fff;
+}
+
+.bien-chip.is-active {
+  background: #fff;
+  color: var(--nuit);
+}
+
+.panel-foot .note {
+  display: block;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 860px) {
+  .bien-chip {
+    padding: 7px 10px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* `hidden` doit primer sur les display: flex/grid des blocs du panneau. */
+[hidden] {
+  display: none !important;
+}
