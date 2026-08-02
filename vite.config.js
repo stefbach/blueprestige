@@ -7,7 +7,7 @@ const here = dirname(fileURLToPath(import.meta.url))
 /**
  * Deux pages :
  *   /           → le site vitrine (reproduction du bundle de design)
- *   /visite-3d/ → la visite virtuelle 3D de la villa
+ *   /visite/    → la visite photo du bien, pièce par pièce
  */
 export default defineConfig({
   build: {
@@ -16,7 +16,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(here, 'index.html'),
-        visite: resolve(here, 'visite-3d/index.html'),
+        visite: resolve(here, 'visite/index.html'),
       },
     },
   },

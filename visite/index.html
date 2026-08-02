@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Visite — Blue Prestige Mauritius</title>
+    <meta name="description" content="Visite guidée du bien, pièce par pièce, en photos." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="tour">
+      <div id="stage">
+        <header id="topbar">
+          <a class="brand" href="/">
+            <span class="mark">JH</span>
+            <span class="name">BLUE PRESTIGE</span>
+          </a>
+          <span class="counter" id="counter">1 / 1</span>
+          <button id="panel-toggle">Plan</button>
+        </header>
+
+        <button class="nav prev" aria-label="Photo précédente">←</button>
+        <button class="nav next" aria-label="Photo suivante">→</button>
+
+        <div id="caption">
+          <span class="room"></span>
+          <h1 class="title"></h1>
+          <p class="text"></p>
+        </div>
+      </div>
+
+      <aside id="panel">
+        <div class="panel-head">
+          <button data-level="0" class="is-active">Rez-de-chaussée</button>
+          <button data-level="1">Étage</button>
+        </div>
+
+        <div class="panel-body">
+          <div>
+            <p class="panel-label">Plan — cliquez une pièce</p>
+            <div id="plan"></div>
+          </div>
+
+          <div>
+            <p class="panel-label">Parcours</p>
+            <div class="steps" id="steps"></div>
+          </div>
+
+          <div>
+            <p class="panel-label">Toutes les vues</p>
+            <div class="thumbs" id="thumbs"></div>
+          </div>
+        </div>
+
+        <p class="panel-foot">
+          Plan indicatif, cotes estimées — sans valeur contractuelle.
+          <a href="/#contact">Demander une visite privée</a>
+        </p>
+      </aside>
+    </div>
+
+    <script type="module" src="/src/tour/tour.js"></script>
+  </body>
+</html>
