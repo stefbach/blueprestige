@@ -1,0 +1,8 @@
+# hello3dmcp-server is cloned by scripts/install-mcp-3d.sh, not vendored
+/vendor/hello3dmcp-server/
+
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+.env
