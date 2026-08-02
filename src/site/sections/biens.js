@@ -44,7 +44,7 @@ export function renderBiens(ctx) {
       ${each(biensVus, (b) => `
         <article style="display:flex;flex-direction:column;background:#fff;animation:bpRise .5s ease both">
           <div style="position:relative;height:300px;background:#E8ECFB">
-            ${imageSlot({ placeholder: b.slot, fit: 'cover' })}
+            ${imageSlot({ src: b.cover, placeholder: b.slot, fit: 'cover' })}
             <span style="position:absolute;top:0;left:0;padding:10px 16px;background:#fff;font-size:10px;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;color:#2A3BC4;pointer-events:none">${esc(b.statut)}</span>
           </div>
           <div style="display:flex;flex-direction:column;gap:18px;padding:32px 30px 30px">

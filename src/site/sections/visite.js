@@ -10,9 +10,9 @@ export function renderVisite(ctx) {
   <section id="visite" style="padding:130px 40px;background:#101A4D;color:#fff">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:30px;padding-bottom:50px">
       <div style="display:flex;flex-direction:column;gap:18px">
-        <span style="font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#9AA6E8">Visite exploratoire · 3D</span>
+        <span style="font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#9AA6E8">Visite exploratoire</span>
         <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,3.4vw,54px);line-height:1.08;color:#fff">Entrez pièce par pièce</h2>
-        <p style="margin:0;max-width:52ch;font-size:15px;line-height:1.8;color:#B9C1EC;font-weight:300;text-wrap:pretty">Un plan vivant plutôt qu'une liste de photos. Choisissez une pièce : la lumière, le volume, l'intention de mise en scène et l'œuvre qui l'habite s'affichent ensemble.</p>
+        <p style="margin:0;max-width:52ch;font-size:15px;line-height:1.8;color:#B9C1EC;font-weight:300;text-wrap:pretty">Un plan vivant plutôt qu'une liste de photos. Choisissez une pièce : la vue, la lumière, l'intention de mise en scène et l'œuvre qui l'habite s'affichent ensemble.</p>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:2px;background:rgba(255,255,255,.16)">
         ${each(ongletsBiens, (t) => `
@@ -23,7 +23,7 @@ export function renderVisite(ctx) {
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:44px;align-items:stretch">
       <div style="display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:20px">
-          <span style="font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#9AA6E8">Plan — niveau 0</span>
+          <span style="font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#9AA6E8">Les pièces</span>
           <span style="font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#9AA6E8">${esc(bienActif.surface)}</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(4,1fr);gap:5px;height:440px;padding:14px;border:1px solid rgba(255,255,255,.20)">
@@ -38,8 +38,8 @@ export function renderVisite(ctx) {
       </div>
       <div style="display:flex;flex-direction:column;gap:0;background:rgba(255,255,255,.05)">
         <div style="position:relative;height:420px;background:#0B1236">
-          ${imageSlot({ placeholder: pieceActive.slot })}
-          <span style="position:absolute;top:0;right:0;padding:11px 18px;background:#2A3BC4;color:#fff;font-size:10px;letter-spacing:.22em;text-transform:uppercase;pointer-events:none">Vue 360° · ${esc(pieceActive.label)}</span>
+          ${imageSlot({ src: pieceActive.img, placeholder: pieceActive.slot })}
+          <span style="position:absolute;top:0;right:0;padding:11px 18px;background:#2A3BC4;color:#fff;font-size:10px;letter-spacing:.22em;text-transform:uppercase;pointer-events:none">${esc(pieceActive.label)}</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:34px;padding:36px 34px">
           <div style="display:flex;flex-direction:column;gap:14px">
@@ -57,7 +57,10 @@ export function renderVisite(ctx) {
                 <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#fff">${esc(pieceActive.oeuvre)}</span>
               </span>
             `)}
-            <a href="#contact" style="align-self:flex-start;padding:13px 20px;background:#2A3BC4;color:#fff;font-size:10px;letter-spacing:.2em;text-transform:uppercase" class="${hv('background:#fff;color:#101A4D')}">Visiter sur place</a>
+            <span style="display:flex;flex-wrap:wrap;gap:10px">
+              <a href="${esc(bienActif.tour)}" style="padding:13px 20px;background:#2A3BC4;color:#fff;font-size:10px;letter-spacing:.2em;text-transform:uppercase" class="${hv('background:#fff;color:#101A4D')}">Visite complète →</a>
+              <a href="#contact" style="padding:13px 20px;border:1px solid rgba(255,255,255,.35);color:#B9C1EC;font-size:10px;letter-spacing:.2em;text-transform:uppercase" class="${hv('border-color:#fff;color:#fff')}">Visiter sur place</a>
+            </span>
           </div>
         </div>
       </div>

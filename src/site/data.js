@@ -40,99 +40,104 @@ export const REPERES = [
   { annee: '2024', texte: 'Blue Prestige Mauritius — Flic en Flac & Tamarin.' },
 ]
 
+// Le filtre du bundle portait sur deux côtes fictives. Avec trois biens réels
+// dont les localités exactes ne sont pas connues, filtrer par type est la seule
+// coupe honnête — et la seule qui serve encore à quelque chose.
 export const FILTRES = [
   { key: 'all', label: 'Tous' },
-  { key: 'flic', label: 'Flic en Flac' },
-  { key: 'tamarin', label: 'Tamarin' },
+  { key: 'villa', label: 'Villa' },
+  { key: 'appartement', label: 'Appartement' },
 ]
 
+/**
+ * Les trois biens réellement présentés. Ils remplacent les biens de démonstration
+ * du bundle de design.
+ *
+ * ⚠️ DONNÉES COMMERCIALES À COMPLÉTER. Les prix, statuts et localités exactes ne
+ * sont pas connus : ils sont volontairement laissés en « sur demande » plutôt
+ * qu'inventés — un prix erroné sur une annonce engage plus qu'il ne rend service.
+ * Chercher `À COMPLÉTER` pour les retrouver.
+ *
+ * Les surfaces de la villa viennent du relevé (`src/villa/plan.js`) : estimées à
+ * ±10 % depuis les photos, pas mesurées sur site. Celles du rooftop et du town
+ * house ne sont pas connues.
+ *
+ * `tour` pointe la visite photo correspondante.
+ */
 export const BIENS = [
   {
-    id: 'lagon',
-    nom: 'Villa Lagon Bleu',
-    lieu: 'Flic en Flac',
-    coast: 'flic',
-    statut: 'À vendre',
-    prix: 'MUR 42 000 000',
-    surface: '320 m² · 780 m² de terrain',
-    desc: "Pieds dans l'eau, façade blanche et volumes ouverts sur le lagon. Les couchers de soleil y entrent jusqu'au fond du salon.",
-    specs: ['4 chambres', '4 salles de bain', '320 m²', 'Piscine à débordement'],
+    id: 'villa',
+    nom: 'La Villa',
+    lieu: 'Île Maurice', // À COMPLÉTER : localité exacte
+    coast: 'villa',
+    statut: 'Visite sur demande', // À COMPLÉTER : à vendre / à louer
+    prix: 'Prix sur demande', // À COMPLÉTER
+    surface: '≈ 237 m² utiles · deux niveaux',
+    tour: '/visite/?bien=villa',
+    cover: '/photos/ext-facade-01.jpg',
+    desc: "Deux niveaux sur jardin clos, parquet à bâtons rompus et menuiseries bois massif. L'étage, sous plafond cathédrale, dispose de sa terrasse et d'un accès indépendant.",
+    specs: ['5 chambres', '3 salles d’eau', '≈ 237 m²', 'Jardin clos'],
     oeuvre: 'Blue Shadows',
     oeuvreImg: A + '2299265_1_l.jpg',
-    slot: 'Villa Lagon Bleu — façade sur lagon',
+    slot: 'La Villa — façade sur jardin',
     pieces: [
-      { label: 'Salon', ga: '1 / 1 / 3 / 4', surface: '62 m²', lumiere: 'Ouest, dorée à 17 h', oeuvre: 'Deep Blue Lagoon', slot: 'Salon ouvert sur le lagon', texte: "Un seul volume de 62 m² qui glisse vers la terrasse. Mobilier bas, textiles écrus, une toile bleue pour tenir le mur du fond : tout est calibré pour que le regard aille jusqu'à l'eau sans rencontrer d'obstacle." },
-      { label: 'Cuisine', ga: '1 / 4 / 2 / 7', surface: '24 m²', lumiere: 'Nord, constante', oeuvre: 'Blue Shadows', slot: 'Cuisine ouverte', texte: "Îlot central en basalte local, façades laquées blanches. La lumière du nord ne bouge pas de la journée — idéale pour cuisiner, parfaite pour photographier." },
-      { label: 'Suite principale', ga: '2 / 4 / 4 / 6', surface: '38 m²', lumiere: 'Est, douce au réveil', oeuvre: 'Breath of Light', slot: 'Suite principale', texte: "Lit face à la baie vitrée, dressing dissimulé, salle de bain en enfilade. On a retiré deux cloisons pour laisser le matin traverser la pièce." },
-      { label: 'Terrasse', ga: '3 / 1 / 5 / 4', surface: '75 m²', lumiere: 'Plein ouest', oeuvre: 'Sunset Silhouettes', slot: 'Terrasse et piscine', texte: "Deck en teck, piscine à débordement alignée sur l'horizon. C'est ici que la maison se vend : à 18 h, le lagon et la piscine ne font plus qu'une seule surface." },
-      { label: 'Chambre 2', ga: '4 / 4 / 5 / 6', surface: '19 m²', lumiere: 'Est', oeuvre: 'Waves', slot: 'Deuxième chambre', texte: "Chambre d'amis pensée en camaïeu de blancs, une seule œuvre au mur pour donner le ton." },
-      { label: 'Patio', ga: '2 / 6 / 5 / 7', surface: '12 m²', lumiere: 'Zénithale', oeuvre: 'Earth Vision', slot: 'Patio végétal', texte: "Un puits de lumière planté de fougères, respiration entre les chambres et le séjour." },
+      { label: 'Chambre 1', ga: '1 / 1 / 3 / 3', surface: '20.8 m²', lumiere: 'Nord', oeuvre: 'Breath of Light', img: '/photos/rez-chambre-01.jpg', slot: 'Chambre du rez', texte: "Chambre du rez remise en scène : le bureau, l'écran et les câbles ont disparu au profit d'une tête de lit cannée, d'un tapis berbère et d'un fauteuil rotin près de la fenêtre." },
+      { label: 'Salle d’eau', ga: '1 / 3 / 2 / 4', surface: '6.7 m²', lumiere: 'Nord', oeuvre: 'The Blue', img: '/photos/etage-sde-01.jpg', slot: 'Salle d’eau', texte: 'Douche à paroi verre, WC suspendu, armoire de toilette miroir.' },
+      { label: 'Dégagement', ga: '2 / 3 / 3 / 5', surface: '13.3 m²', lumiere: 'Indirecte', oeuvre: 'The Curve', img: '/photos/rez-entree-05.jpg', slot: 'Dégagement', texte: "L'arche de la cuisine vue depuis l'escalier — la circulation fait partie de la visite." },
+      { label: 'Cuisine', ga: '1 / 4 / 2 / 7', surface: '14.1 m²', lumiere: 'Est', oeuvre: 'Summer', img: '/photos/rez-cuisine-01.jpg', slot: 'Cuisine', texte: "Îlot plan de travail bois, façades shaker crème, sol en carreaux de ciment à motifs, double four encastré. Les plans ont été dégagés pour la mise en scène." },
+      { label: 'Arrière-cuisine', ga: '2 / 5 / 3 / 7', surface: '12.5 m²', lumiere: 'Technique', oeuvre: 'The Wall', img: '/photos/rez-buanderie-01.jpg', slot: 'Arrière-cuisine', texte: 'Buanderie en couloir, plan de travail bois, rangements ouverts et sortie de service — invisible depuis les pièces de vie.' },
+      { label: 'Séjour', ga: '3 / 1 / 5 / 4', surface: '31.0 m²', lumiere: 'Sud, généreuse', oeuvre: 'The Blue', img: '/photos/rez-salon-02.jpg', slot: 'Séjour', texte: "Baies plein sud, double porte vitrée bois vers la salle à manger. Canapé lin, tapis jute, tables gigognes noyer et deux toiles bleues pour tenir le grand mur." },
+      { label: 'Salle à manger', ga: '3 / 4 / 5 / 6', surface: '22.0 m²', lumiere: 'Sud', oeuvre: 'Harmony', img: '/photos/rez-sam-01.jpg', slot: 'Salle à manger', texte: "Table ovale dix couverts, baie coulissante sur la terrasse. Chaises cannage, chemin de table lin et frangipaniers : la pièce est calibrée pour les dîners qui s'étirent." },
+      { label: 'Entrée', ga: '3 / 6 / 5 / 7', surface: '14.0 m²', lumiere: 'Sud', oeuvre: 'The Circle', img: '/photos/rez-entree-01.jpg', slot: 'Entrée', texte: "Porte bois massif à imposte vitrée, parquet à bâtons rompus, escalier tournant à départ en volute. L'arrivée donne le ton." },
     ],
   },
   {
-    id: 'tamarin',
-    nom: 'Kaz Tamarin',
-    lieu: 'Tamarin',
-    coast: 'tamarin',
-    statut: 'À vendre',
-    prix: 'MUR 28 500 000',
-    surface: '245 m² · vue montagne',
-    desc: 'Sur les hauteurs de Tamarin, entre vagues sauvages et collines dorées. Une maison créole revisitée, murs chaulés et bois brut.',
-    specs: ['3 chambres', '2 salles de bain', '245 m²', 'Vue Montagne du Rempart'],
-    oeuvre: 'Earth Vision',
-    oeuvreImg: A + '2299255_1_l.jpg',
-    slot: 'Kaz Tamarin — vue collines',
-    pieces: [
-      { label: 'Séjour', ga: '1 / 1 / 3 / 4', surface: '48 m²', lumiere: 'Sud-ouest', oeuvre: 'The Dark and Light', slot: 'Séjour créole revisité', texte: "Charpente apparente, sol en pierre claire, cheminée conservée. On a chaulé les murs pour que la lumière de fin de journée s'y accroche." },
-      { label: 'Cuisine d’été', ga: '1 / 4 / 2 / 7', surface: '22 m²', lumiere: 'Est', oeuvre: 'Feeling Flow', slot: "Cuisine d'été", texte: "Ouverte sur le jardin, plan de travail en béton ciré, four à bois. Elle prolonge la table plutôt que de s'en séparer." },
-      { label: 'Suite', ga: '2 / 4 / 4 / 6', surface: '31 m²', lumiere: 'Nord-est', oeuvre: 'Serenity of Motion', slot: 'Suite avec vue montagne', texte: "La fenêtre cadre exactement la Montagne du Rempart : on a déplacé le lit pour que ce soit la première chose que l'on voie." },
-      { label: 'Jardin', ga: '3 / 1 / 5 / 4', surface: '410 m²', lumiere: 'Plein sud', oeuvre: 'Rise Like a Sun', slot: 'Jardin et manguiers', texte: "Manguiers centenaires, douche extérieure, coin feu. Aucun vis-à-vis, un seul bruit : les vagues de Tamarin Bay." },
-      { label: 'Atelier', ga: '4 / 4 / 5 / 7', surface: '26 m²', lumiere: 'Nord, égale', oeuvre: 'Passion Palette', slot: 'Atelier / bureau', texte: 'Ancienne dépendance transformée en atelier — lumière du nord, sol brut, deux murs libres pour accrocher.' },
-      { label: 'Mezzanine', ga: '2 / 6 / 4 / 7', surface: '18 m²', lumiere: 'Ouest', oeuvre: 'Nightfall', slot: 'Mezzanine lecture', texte: 'Une plateforme de bois suspendue au-dessus du séjour, pour lire à hauteur de charpente.' },
-    ],
-  },
-  {
-    id: 'sunset',
-    nom: 'Penthouse Sunset',
-    lieu: 'Flic en Flac',
-    coast: 'flic',
-    statut: 'Location saisonnière',
-    prix: 'MUR 12 500 / nuit',
-    surface: '180 m² · dernier étage',
-    desc: 'Dernier étage, terrasse plein ciel, vue frontale sur le coucher de soleil. Meublé et scénographié pièce par pièce.',
-    specs: ['3 chambres', '3 salles de bain', '180 m²', 'Rooftop privatif'],
+    id: 'rooftop',
+    nom: 'Le Rooftop',
+    lieu: 'Île Maurice', // À COMPLÉTER : localité exacte
+    coast: 'appartement',
+    statut: 'Visite sur demande', // À COMPLÉTER
+    prix: 'Prix sur demande', // À COMPLÉTER
+    surface: 'Terrasse privative · vue mer', // À COMPLÉTER : surface
+    tour: '/visite/?bien=rooftop',
+    cover: '/photos/rooftop/terrasse-01.jpg',
+    desc: 'Dernier étage dans une résidence à piscine à débordement. Terrasse privative en deck bois, vue frontale sur la montagne et sur l’océan.',
+    specs: ['3 chambres', 'Terrasse privative', 'Vue mer', 'Piscine de résidence'],
     oeuvre: 'Serenity of Motion',
     oeuvreImg: A + '2299225_1_l.jpg',
-    slot: 'Penthouse Sunset — rooftop',
+    slot: 'Le Rooftop — terrasse privative',
     pieces: [
-      { label: 'Living', ga: '1 / 1 / 3 / 4', surface: '54 m²', lumiere: 'Ouest, spectaculaire', oeuvre: 'The Blue', slot: 'Living du penthouse', texte: "Baies coulissantes sur toute la longueur. Palette blanc-lin, une seule toile bleue au mur : le reste de la couleur vient du ciel." },
-      { label: 'Rooftop', ga: '1 / 4 / 3 / 7', surface: '90 m²', lumiere: 'Plein ciel', oeuvre: 'Sunset Silhouettes', slot: 'Rooftop et bassin', texte: "Bassin en inox, banquettes basses, éclairage rasant. Conçu pour l'heure bleue plus que pour midi." },
-      { label: 'Suite', ga: '3 / 1 / 5 / 3', surface: '34 m²', lumiere: 'Sud-ouest', oeuvre: 'Sensuality', slot: 'Suite du penthouse', texte: 'Tête de lit en cannage, lin lavé, occultants intégrés. On dort au calme malgré la façade entièrement vitrée.' },
-      { label: 'Cuisine', ga: '3 / 3 / 4 / 5', surface: '20 m²', lumiere: 'Nord', oeuvre: 'Blue Bubble', slot: 'Cuisine du penthouse', texte: 'Cuisine fermée par une verrière noire, pour cuisiner sans rompre la ligne du séjour.' },
-      { label: 'Chambre 2', ga: '4 / 3 / 5 / 5', surface: '17 m²', lumiere: 'Est', oeuvre: 'Whispers of Pink', slot: 'Deuxième chambre', texte: 'Deux lits jumeaux, rangements sur mesure, une œuvre rose pâle pour réchauffer les blancs.' },
-      { label: 'Entrée', ga: '3 / 5 / 5 / 7', surface: '14 m²', lumiere: 'Indirecte', oeuvre: 'The Curve', slot: 'Entrée galerie', texte: "Un couloir traité comme une galerie : mur sombre, trois accroches, lumière rasante. L'arrivée fait déjà partie de la visite." },
+      { label: 'Terrasse', ga: '1 / 1 / 3 / 4', surface: 'Privative', lumiere: 'Plein ciel', oeuvre: 'Sunset Silhouettes', img: '/photos/rooftop/terrasse-01.jpg', slot: 'Terrasse rooftop', texte: 'Deck bois, salon bas et table dix couverts. À l’ouest, la montagne ; au-delà, l’océan. C’est ici que le bien se vend.' },
+      { label: 'Séjour', ga: '1 / 4 / 3 / 7', surface: 'Traversant', lumiere: 'Ouest', oeuvre: 'The Blue', img: '/photos/rooftop/salon-01.jpg', slot: 'Séjour du penthouse', texte: 'Claustra-bibliothèque en séparation, canapé d’angle, suspensions design et triptyque au mur. Le bleu nuit du mur d’accent répond au ciel.' },
+      { label: 'Cuisine', ga: '3 / 1 / 4 / 3', surface: 'Ouverte', lumiere: 'Nord', oeuvre: 'Blue Bubble', img: '/photos/rooftop/cuisine-02.jpg', slot: 'Cuisine ouverte', texte: 'Linéaire laqué, plan quartz, plaque induction et colonne Bosch. Sortie directe sur le balcon.' },
+      { label: 'Chambre principale', ga: '3 / 3 / 5 / 5', surface: 'Vue mer', lumiere: 'Est', oeuvre: 'Whispers of Pink', img: '/photos/rooftop/chambre1-01.jpg', slot: 'Suite principale', texte: 'Papier peint graphique, tête de lit capitonnée, baie toute hauteur sur la végétation et la mer.' },
+      { label: 'Chambre 2', ga: '3 / 5 / 4 / 7', surface: 'Accès balcon', lumiere: 'Est', oeuvre: 'Waves', img: '/photos/rooftop/chambre2-01.jpg', slot: 'Deuxième chambre', texte: 'Chambre double avec accès balcon, camaïeu de gris et de blancs.' },
+      { label: 'Chambre 3', ga: '4 / 5 / 5 / 7', surface: '—', lumiere: 'Sud', oeuvre: 'Whispers of Pink', img: '/photos/rooftop/chambre3-01.jpg', slot: 'Troisième chambre', texte: 'Camaïeu rose poudré, rosaces murales en fibre tressée.' },
+      { label: 'La résidence', ga: '4 / 1 / 5 / 3', surface: 'Commune', lumiere: 'Plein soleil', oeuvre: 'Deep Blue', img: '/photos/rooftop/residence-02.jpg', slot: 'Piscine de la résidence', texte: 'Piscine à débordement bordée de jardins paysagés, façades bois et pierre, bassin miroir en entrée.' },
     ],
   },
   {
-    id: 'bayview',
-    nom: 'Villa Bay View',
-    lieu: 'Tamarin',
-    coast: 'tamarin',
-    statut: 'À louer',
-    prix: 'MUR 180 000 / mois',
-    surface: '290 m² · accès plage',
-    desc: 'À deux pas de la baie, une villa contemporaine aux lignes nettes, pensée pour les longues locations familiales.',
-    specs: ['4 chambres', '3 salles de bain', '290 m²', 'Accès plage privé'],
-    oeuvre: 'Sunset Silhouettes',
-    oeuvreImg: A + '2179467_1_l.jpg',
-    slot: 'Villa Bay View — piscine',
+    id: 'townhouse',
+    nom: 'Le Town House',
+    lieu: 'Île Maurice', // À COMPLÉTER : localité exacte
+    coast: 'appartement',
+    statut: 'Visite sur demande', // À COMPLÉTER
+    prix: 'Prix sur demande', // À COMPLÉTER
+    surface: 'Duplex · terrasse de plain-pied', // À COMPLÉTER : surface
+    tour: '/visite/?bien=townhouse',
+    cover: '/photos/townhouse/terrasse-01.jpg',
+    desc: 'Duplex du même programme, séjour traversant sur cuisine ouverte et terrasse de plain-pied sous pergola, ouverte sur le jardin paysagé.',
+    specs: ['Duplex', 'Terrasse sous pergola', 'Jardin paysagé', 'Escalier pierre'],
+    oeuvre: 'Earth Vision',
+    oeuvreImg: A + '2299255_1_l.jpg',
+    slot: 'Le Town House — terrasse sous pergola',
     pieces: [
-      { label: 'Séjour', ga: '1 / 1 / 3 / 4', surface: '58 m²', lumiere: 'Ouest', oeuvre: 'Waves', slot: 'Séjour Bay View', texte: "Double hauteur, sol en travertin, canapés en profondeur. Un grand format bleu-vert répond à la ligne d'horizon." },
-      { label: 'Salle à manger', ga: '1 / 4 / 2 / 7', surface: '26 m²', lumiere: 'Nord-ouest', oeuvre: 'Harmony', slot: 'Salle à manger', texte: "Table de dix en manguier massif, suspensions en rotin. Pensée pour les dîners qui s'étirent." },
-      { label: 'Suite parentale', ga: '2 / 4 / 4 / 6', surface: '40 m²', lumiere: 'Est', oeuvre: 'Breath of Light', slot: 'Suite parentale', texte: 'Aile séparée, salle de bain ouverte sur un patio privé, douche à ciel ouvert.' },
-      { label: 'Piscine', ga: '3 / 1 / 5 / 4', surface: '68 m²', lumiere: 'Plein soleil', oeuvre: 'Deep Blue', slot: 'Piscine et pool house', texte: 'Bassin de 12 mètres bordé de filaos, pool house ombragé. Le bleu de l’eau a été choisi au plus proche de celui du lagon.' },
-      { label: 'Chambres enfants', ga: '4 / 4 / 5 / 7', surface: '2 × 16 m²', lumiere: 'Sud-est', oeuvre: 'The 7 Hearts', slot: 'Chambres enfants', texte: 'Deux chambres jumelles reliées par une salle de jeux, rangements bas et murs clairs.' },
-      { label: 'Buanderie', ga: '2 / 6 / 4 / 7', surface: '11 m²', lumiere: 'Technique', oeuvre: 'The Wall', slot: 'Espace de service', texte: 'Espace de service complet, indispensable en location longue durée — invisible depuis les pièces de vie.' },
+      { label: 'Séjour', ga: '1 / 1 / 3 / 4', surface: 'Traversant', lumiere: 'Ouest', oeuvre: 'Feeling Flow', img: '/photos/townhouse/salon-02.jpg', slot: 'Séjour du duplex', texte: 'Volume traversant, sol travertin, murs vert-de-gris. Le regard va du canapé jusqu’à l’escalier sans rencontrer de cloison.' },
+      { label: 'Cuisine', ga: '1 / 4 / 3 / 7', surface: 'Ouverte', lumiere: 'Nord', oeuvre: 'Summer', img: '/photos/townhouse/cuisine-01.jpg', slot: 'Cuisine ouverte', texte: 'Plan granit noir, plaque gaz, hotte inox et four encastré. Elle prolonge le séjour plutôt que de s’en séparer.' },
+      { label: 'Escalier', ga: '3 / 1 / 5 / 2', surface: '—', lumiere: 'Zénithale', oeuvre: 'The Curve', img: '/photos/townhouse/escalier-01.jpg', slot: 'Escalier intérieur', texte: 'Marches en pierre claire, garde-corps verre, main courante bois. Un seul mur libre, une seule accroche.' },
+      { label: 'Chambre', ga: '3 / 2 / 5 / 4', surface: '—', lumiere: 'Est', oeuvre: 'Passion Palette', img: '/photos/townhouse/chambre-01.jpg', slot: 'Chambre du duplex', texte: 'Frise géométrique en tête de lit, tête de lit tissu, palette claire.' },
+      { label: 'Salle d’eau', ga: '3 / 4 / 5 / 5', surface: '—', lumiere: 'Jalousie', oeuvre: 'The Blue', img: '/photos/townhouse/sde-01.jpg', slot: 'Salle d’eau', texte: 'Vasque posée sur plan pierre, WC suspendu, jalousie ventilée.' },
+      { label: 'Terrasse jardin', ga: '3 / 5 / 5 / 7', surface: 'Plain-pied', lumiere: 'Plein sud', oeuvre: 'Rise Like a Sun', img: '/photos/townhouse/terrasse-01.jpg', slot: 'Terrasse sous pergola', texte: 'Pergola bois, table teck, haie taillée et palmiers. De plain-pied avec le séjour — la terrasse est une pièce de plus.' },
     ],
   },
 ]
