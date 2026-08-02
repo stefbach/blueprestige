@@ -162,4 +162,9 @@ export const ASSETS = {
   portrait: 'uploads/WhatsApp Image 2026-08-02 at 18.20.38 (1).jpeg',
   portraitContact: 'uploads/WhatsApp Image 2026-08-02 at 18.20.38.jpeg',
   atelier: 'uploads/WhatsApp Image 2026-08-02 at 18.20.39.jpeg',
+  // Comparateur de la section Home staging : la chambre du rez de la villa,
+  // avant (bureau, écran, câbles) et après remise en scène. Deux cadrages
+  // strictement identiques — c'est la condition pour qu'un volet ait du sens.
+  stagingAvant: '/photos/rez-chambre-01.jpg',
+  stagingApres: '/photos/staged/rez-chambre-01.jpg',
 }

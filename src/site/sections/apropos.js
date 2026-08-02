@@ -24,9 +24,14 @@ export function renderStaging(ctx) {
       </div>
     </div>
     <div data-staging style="position:relative;height:520px;background:#E8ECFB;cursor:ew-resize;touch-action:none;user-select:none">
-      ${imageSlot({ placeholder: 'Avant — pièce nue', shape: 'rect', fit: 'cover' })}
+      <!-- Le clip de la maquette (\`inset(0 X% 0 0)\`) découvre le calque
+           supérieur par la GAUCHE, alors que les étiquettes annoncent « Avant »
+           à gauche et « Après » à droite. Les deux images sont donc échangées
+           par rapport au bundle : la mise en scène est en fond, le cliché
+           d'origine par-dessus. Sans cela le comparateur se lit à l'envers. -->
+      ${imageSlot({ src: ASSETS.stagingApres, placeholder: 'Après — pièce mise en scène', shape: 'rect', fit: 'cover' })}
       <div data-staging-after style="position:absolute;inset:0;clip-path:${clipAfter}">
-        ${imageSlot({ placeholder: 'Après — pièce mise en scène', shape: 'rect', fit: 'cover' })}
+        ${imageSlot({ src: ASSETS.stagingAvant, placeholder: 'Avant — pièce nue', shape: 'rect', fit: 'cover' })}
       </div>
       <div data-staging-handle style="position:absolute;top:0;bottom:0;left:${handleLeft};width:1px;background:#fff;pointer-events:none">
         <span style="position:absolute;top:50%;left:50%;display:grid;place-items:center;width:52px;height:52px;transform:translate(-50%,-50%);background:#fff;color:#2A3BC4;font-size:13px;letter-spacing:.1em;box-shadow:0 14px 30px -14px rgba(16,26,77,.6)">↔</span>
