@@ -9,4 +9,4 @@ __pycache__/
 .env
 
 # script de capture d'écran local
-/.shot.mjs
+/.shot*.mjs
