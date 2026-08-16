@@ -109,6 +109,7 @@ export const TOUR = [
           fr: 'Séjour — canapé d’angle, double porte vitrée en bois, ouverture sur la salle à manger',
           en: 'Living room — corner sofa, double glazed timber doors, opening onto the dining room',
         },
+        staged: 'rez-salon-01.jpg',
       },
       {
         file: 'rez-salon-02.jpg',
@@ -173,6 +174,7 @@ export const TOUR = [
           fr: 'Îlot central plan de travail bois, trois tabourets, double four encastré',
           en: 'Central island with timber worktop, three stools, double built-in oven',
         },
+        staged: 'rez-cuisine-01.jpg',
       },
       {
         file: 'rez-cuisine-02.jpg',
@@ -195,6 +197,7 @@ export const TOUR = [
           fr: 'Chambre avec espace bureau, climatiseur et store bateau',
           en: 'Bedroom with a desk area, air conditioning and a Roman blind',
         },
+        staged: 'rez-chambre-01.jpg',
       },
     ],
   },
@@ -250,6 +253,7 @@ export const TOUR = [
           fr: 'Grande terrasse carrelée, vue dégagée sur la végétation et la montagne',
           en: 'Large tiled terrace, open view over the greenery and the mountain',
         },
+        staged: 'etage-terrasse-01.jpg',
       },
     ],
   },
