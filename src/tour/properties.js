@@ -33,43 +33,61 @@ function flatten(steps, base, stagedBase) {
 export const PROPERTIES = [
   {
     id: 'villa',
-    nom: 'La Villa',
-    sousTitre: 'Deux niveaux · jardin clos',
+    nom: { fr: 'La Villa', en: 'The Villa' },
+    sousTitre: { fr: 'Deux niveaux · jardin clos', en: 'Two levels · enclosed garden' },
     steps: VILLA_TOUR,
     sequence: flatten(VILLA_TOUR, '/photos/', '/photos/staged/'),
     hasPlan: true,
     levels: LEVELS,
-    note: 'Plan indicatif, cotes estimées — sans valeur contractuelle.',
+    note: {
+      fr: 'Plan indicatif, cotes estimées — sans valeur contractuelle.',
+      en: 'Indicative plan, estimated dimensions — not contractually binding.',
+    },
   },
   {
     id: 'rooftop',
-    nom: 'Le Rooftop',
-    sousTitre: 'Penthouse · terrasse privative · vue mer',
+    nom: { fr: 'Le Rooftop', en: 'The Rooftop' },
+    sousTitre: {
+      fr: 'Penthouse · terrasse privative · vue mer',
+      en: 'Penthouse · private terrace · sea view',
+    },
     steps: ROOFTOP_TOUR,
     sequence: flatten(ROOFTOP_TOUR, '/photos/rooftop/', '/photos/rooftop/staged/'),
     hasPlan: false,
     levels: [],
-    note: 'Résidence avec piscine à débordement et jardins paysagés.',
+    note: {
+      fr: 'Résidence avec piscine à débordement et jardins paysagés.',
+      en: 'Residence with an infinity pool and landscaped gardens.',
+    },
   },
   {
     id: 'townhouse',
-    nom: 'Le Town House',
-    sousTitre: 'Duplex · terrasse jardin de plain-pied',
+    nom: { fr: 'Le Town House', en: 'The Town House' },
+    sousTitre: {
+      fr: 'Duplex · terrasse jardin de plain-pied',
+      en: 'Duplex · level-access garden terrace',
+    },
     steps: TOWNHOUSE_TOUR,
     sequence: flatten(TOWNHOUSE_TOUR, '/photos/townhouse/', '/photos/townhouse/staged/'),
     hasPlan: false,
     levels: [],
-    note: 'Même programme que Le Rooftop, logement distinct.',
+    note: {
+      fr: 'Même programme que Le Rooftop, logement distinct.',
+      en: 'Same development as The Rooftop, a separate home.',
+    },
   },
   {
     id: 'tamarin',
-    nom: 'L’Appartement',
-    sousTitre: 'Tamarin · piscine privative',
+    nom: { fr: 'L’Appartement', en: 'The Apartment' },
+    sousTitre: { fr: 'Tamarin · piscine privative', en: 'Tamarin · private pool' },
     steps: TAMARIN_TOUR,
     sequence: flatten(TAMARIN_TOUR, '/photos/tamarin/', '/photos/tamarin/staged/'),
     hasPlan: false,
     levels: [],
-    note: 'Duplex avec piscine privative, résidence paysagée.',
+    note: {
+      fr: 'Duplex avec piscine privative, résidence paysagée.',
+      en: 'Duplex with a private pool, in a landscaped residence.',
+    },
   },
 ]
 

@@ -65,9 +65,16 @@ export function imageSlot({ src, placeholder = '', fit = 'cover', style = '', al
   if (!src) {
     return `<span style="${base};display:grid;place-items:center;padding:16px;background:#E8ECFB;color:#6B739E;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:center;line-height:1.6">${esc(placeholder)}</span>`
   }
+  // `JSON.stringify` produit une chaîne entre guillemets doubles, or le
+  // gestionnaire vit dans un attribut lui-même délimité par des guillemets
+  // doubles : sans échappement, l'attribut se referme au milieu du script et le
+  // repli ne s'affiche jamais (« SyntaxError: Unexpected end of input » dès
+  // qu'une image manque). `esc` les transforme en `&quot;`, que le parseur HTML
+  // rend au moteur JS sous forme de vrais guillemets.
+  const repli = esc(JSON.stringify(placeholder))
   return `<img src="${attr(src)}" alt="${attr(alt ?? placeholder)}" loading="lazy" decoding="async"
     style="${base};object-fit:${fit};display:block"
-    onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'slot-fallback',textContent:${JSON.stringify(placeholder)}}))" />`
+    onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'slot-fallback',textContent:${repli}}))" />`
 }
 
 /** Concatène des fragments, en ignorant les vides. */

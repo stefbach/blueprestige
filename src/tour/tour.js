@@ -11,6 +11,7 @@
 import './tour.css'
 import { PROPERTIES, currentProperty } from './properties.js'
 import { Plan2D } from '../viewer/plan2d.js'
+import { L, LANGS, applyLang, getLang, setLang, t } from '../i18n.js'
 
 const stage = document.getElementById('stage')
 const captionEl = document.getElementById('caption')
@@ -31,18 +32,72 @@ const frames = new Map()
 const current = () => SEQ[index]
 const roomsWithPhotos = new Set(SEQ.map((p) => p.room).filter(Boolean))
 
-// ─── Sélecteur de bien ────────────────────────────────────────────
-const switcher = document.getElementById('bien-switch')
-for (const p of PROPERTIES) {
-  const a = document.createElement('a')
-  a.className = 'bien-chip'
-  a.href = `?bien=${p.id}`
-  a.textContent = p.nom
-  a.classList.toggle('is-active', p.id === bien.id)
-  switcher.appendChild(a)
+// ─── Libellés statiques et sélecteurs ─────────────────────────────
+/**
+ * (Re)pose tout ce qui ne dépend pas de la photo courante : chrome du panneau,
+ * sélecteur de bien, sélecteur de langue, niveaux du plan. Appelé au démarrage
+ * puis à chaque changement de langue — d'où la reconstruction plutôt que
+ * l'ajout, qui empilerait les puces à chaque bascule.
+ */
+function applyStaticLabels() {
+  document.title = t('meta.tourTitle')
+  document.querySelector('meta[name="description"]')?.setAttribute('content', t('meta.tourDescription'))
+
+  for (const node of document.querySelectorAll('[data-i18n]')) {
+    node.textContent = t(node.dataset.i18n)
+  }
+  for (const node of document.querySelectorAll('[data-i18n-aria]')) {
+    node.setAttribute('aria-label', t(node.dataset.i18nAria))
+  }
+
+  const switcher = document.getElementById('bien-switch')
+  switcher.replaceChildren()
+  for (const p of PROPERTIES) {
+    const a = document.createElement('a')
+    a.className = 'bien-chip'
+    // La langue voyage dans le lien : passer d'un bien à l'autre recharge la
+    // page, et le choix ne doit pas dépendre du seul stockage local.
+    a.href = `?bien=${p.id}&lang=${getLang()}`
+    a.textContent = L(p.nom)
+    a.classList.toggle('is-active', p.id === bien.id)
+    switcher.appendChild(a)
+  }
+
+  const langs = document.getElementById('lang-switch')
+  langs.replaceChildren()
+  for (const code of LANGS) {
+    const b = document.createElement('button')
+    b.className = 'lang-chip'
+    b.type = 'button'
+    b.textContent = t(`lang.${code}`)
+    b.classList.toggle('is-active', code === getLang())
+    b.addEventListener('click', () => switchLang(code))
+    langs.appendChild(b)
+  }
+
+  // Les niveaux viennent du relevé : un seul jeu de noms pour le plan et l'onglet.
+  document.querySelectorAll('[data-level]').forEach((b) => {
+    const lvl = bien.levels[Number(b.dataset.level)]
+    if (lvl) b.textContent = L(lvl.name)
+  })
+
+  document.getElementById('bien-sub').textContent = L(bien.sousTitre)
+  document.querySelector('.panel-foot .note').textContent = L(bien.note)
 }
-document.getElementById('bien-sub').textContent = bien.sousTitre
-document.querySelector('.panel-foot .note').textContent = bien.note
+
+/**
+ * Bascule de langue sans rechargement : les calques photo sont jetés car ils
+ * portent les étiquettes du comparateur, puis la vue courante est redessinée.
+ * La position dans la visite est ainsi conservée.
+ */
+function switchLang(code) {
+  if (!setLang(code)) return
+  for (const el of frames.values()) el.remove()
+  frames.clear()
+  applyStaticLabels()
+  plan?.render()
+  show(index)
+}
 
 // ─── Scène ────────────────────────────────────────────────────────
 /**
@@ -58,7 +113,7 @@ function frameFor(i) {
 
   const img = document.createElement('img')
   img.src = photo.src
-  img.alt = photo.caption
+  img.alt = L(photo.caption)
   img.decoding = 'async'
   img.addEventListener('error', () => el.replaceChildren(missingSlot(photo)))
   el.appendChild(img)
@@ -80,11 +135,11 @@ function comparator(photo) {
   wrap.className = 'compare'
   wrap.innerHTML = `
     <div class="compare-after" style="clip-path:inset(0 0 0 50%)">
-      <img src="${photo.stagedSrc}" alt="${photo.caption} — remise en scène" decoding="async" />
+      <img src="${photo.stagedSrc}" alt="${L(photo.caption)} — ${t('tour.stagedAlt')}" decoding="async" />
     </div>
     <div class="compare-handle" style="left:50%"><span>↔</span></div>
-    <span class="compare-tag left">Avant</span>
-    <span class="compare-tag right">Après — home staging</span>`
+    <span class="compare-tag left">${t('tour.before')}</span>
+    <span class="compare-tag right">${t('tour.after')}</span>`
 
   const after = wrap.querySelector('.compare-after')
   const handle = wrap.querySelector('.compare-handle')
@@ -117,9 +172,9 @@ function missingSlot(photo) {
   const box = document.createElement('div')
   box.className = 'missing'
   box.innerHTML = `
-    <span class="missing-tag">Photo attendue</span>
+    <span class="missing-tag">${t('tour.missing')}</span>
     <span class="missing-file">${photo.src}</span>
-    <p class="missing-caption">${photo.caption}</p>`
+    <p class="missing-caption">${L(photo.caption)}</p>`
   return box
 }
 
@@ -136,12 +191,12 @@ function show(next) {
     img.style.animation = ''
   }
 
-  const niveau = bien.levels[photo.level]?.name
+  const niveau = L(bien.levels[photo.level]?.name)
   captionEl.querySelector('.room').textContent = [niveau, `${photo.indexInStep + 1} / ${photo.countInStep}`]
     .filter(Boolean)
     .join(' · ')
-  captionEl.querySelector('.title').textContent = photo.titre
-  captionEl.querySelector('.text').textContent = photo.caption
+  captionEl.querySelector('.title').textContent = L(photo.titre)
+  captionEl.querySelector('.text').textContent = L(photo.caption)
   counterEl.textContent = `${index + 1} / ${SEQ.length}`
 
   if (plan) {
@@ -161,7 +216,7 @@ function renderSteps() {
   for (const step of bien.steps) {
     const b = document.createElement('button')
     b.className = 'step-chip'
-    b.textContent = step.titre
+    b.textContent = L(step.titre)
     b.classList.toggle('is-active', step.id === current().stepId)
     b.addEventListener('click', () => show(SEQ.findIndex((p) => p.stepId === step.id)))
     stepsEl.appendChild(b)
@@ -174,7 +229,7 @@ function renderThumbs() {
     const b = document.createElement('button')
     b.className = 'thumb'
     b.classList.toggle('is-active', i === index)
-    b.title = photo.caption
+    b.title = L(photo.caption)
     const img = document.createElement('img')
     img.src = photo.src
     img.alt = ''
@@ -246,5 +301,7 @@ document.getElementById('panel-toggle').addEventListener('click', () => {
 })
 
 // ─── Démarrage ────────────────────────────────────────────────────
+applyLang()
+applyStaticLabels()
 if (bien.hasPlan) setPlanLevel(0)
 show(0)
