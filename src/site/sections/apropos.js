@@ -1,5 +1,5 @@
 import { hv, esc, imageSlot, each, when } from '../dom.js'
-import { REPERES, ASSETS } from '../data.js'
+import { REPERES, ASSETS, CONTACT_EMAIL } from '../data.js'
 
 /** @param {{ pct: number }} ctx — position du curseur avant/après, en % */
 export function renderStaging(ctx) {
@@ -101,7 +101,7 @@ export function renderContact(ctx) {
       </div>
       <div style="display:flex;flex-direction:column;gap:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.18)">
         <a href="tel:+23058278367" style="color:#fff;font-family:'Cormorant Garamond',serif;font-size:26px" class="${hv('color:#9AA6E8')}">+230 5827 8367</a>
-        <a href="mailto:jh@julianahaggoo.art" style="color:#fff;font-size:15px;letter-spacing:.06em" class="${hv('color:#9AA6E8')}">jh@julianahaggoo.art</a>
+        <a href="mailto:${esc(CONTACT_EMAIL)}" style="color:#fff;font-size:15px;letter-spacing:.06em" class="${hv('color:#9AA6E8')}">${esc(CONTACT_EMAIL)}</a>
         <div style="display:flex;flex-wrap:wrap;gap:24px;font-size:11px;letter-spacing:.2em;text-transform:uppercase">
           <a href="https://www.instagram.com/julianahaggooart/" target="_blank" rel="noopener" style="color:#9AA6E8" class="${hv('color:#fff')}">Instagram</a>
           <a href="https://www.julianahaggoo.art" target="_blank" rel="noopener" style="color:#9AA6E8" class="${hv('color:#fff')}">julianahaggoo.art</a>
@@ -114,7 +114,8 @@ export function renderContact(ctx) {
       ${when(sent, () => `
         <div style="display:flex;flex-direction:column;gap:16px;padding:56px 44px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.20)">
           <span style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#fff">Merci.</span>
-          <p style="margin:0;font-size:15px;line-height:1.8;color:#B9C1EC;font-weight:300">Votre demande est arrivée. Juliana vous écrit sous 24 heures pour convenir d'une visite.</p>
+          <p style="margin:0;font-size:15px;line-height:1.8;color:#B9C1EC;font-weight:300">Votre logiciel de messagerie vient de s'ouvrir avec votre demande déjà rédigée : il ne reste qu'à l'envoyer. Juliana vous répond sous 24 heures pour convenir d'une visite.</p>
+          <p style="margin:0;font-size:13px;line-height:1.8;color:#8E99DE;font-weight:300">Rien ne s'est ouvert ? Écrivez directement à <a href="mailto:${esc(CONTACT_EMAIL)}" style="color:#fff" class="${hv('color:#9AA6E8')}">${esc(CONTACT_EMAIL)}</a>.</p>
         </div>
       `)}
       ${when(!sent, () => `

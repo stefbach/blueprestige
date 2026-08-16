@@ -8,7 +8,7 @@
  * sans avoir à réattacher d'écouteurs.
  */
 import './base.css'
-import { BIENS, FILTRES, PROPS, TOILES } from './data.js'
+import { BIENS, CONTACT_EMAIL, FILTRES, PROPS, TOILES } from './data.js'
 import { renderHeader, renderHero } from './sections/header.js'
 import { renderBiens, renderConcept } from './sections/biens.js'
 import { renderArt, renderLightbox, renderVisite } from './sections/visite.js'
@@ -132,10 +132,38 @@ root.addEventListener('click', (e) => {
   }
 })
 
+/**
+ * Compose la demande de visite sous forme de lien `mailto:`.
+ *
+ * Le site est entièrement statique : il n'y a pas de back-end pour recevoir un
+ * POST. Ouvrir le client mail du visiteur avec un message déjà rédigé est donc
+ * le seul acheminement qui parte réellement — et il a l'avantage de laisser une
+ * copie dans les envoyés du visiteur.
+ */
+function mailtoDemande(form) {
+  const data = new FormData(form)
+  const champ = (nom) => String(data.get(nom) ?? '').trim()
+
+  const sujet = `Demande de visite privée — ${champ('projet')} — ${champ('nom')}`
+  const corps = [
+    `Nom : ${champ('nom')}`,
+    `E-mail : ${champ('email')}`,
+    `Téléphone : ${champ('telephone') || '—'}`,
+    `Projet : ${champ('projet')}`,
+    '',
+    champ('message') || '(aucun message)',
+  ].join('\r\n')
+
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`
+}
+
 root.addEventListener('submit', (e) => {
   const form = e.target.closest('[data-action="submit-contact"]')
   if (!form) return
   e.preventDefault()
+  // Le mailto avant le re-render : `setState` remplace le formulaire par l'écran
+  // de confirmation, et l'élément submit ne doit pas disparaître avant lecture.
+  window.location.href = mailtoDemande(form)
   setState({ sent: true })
 })
 

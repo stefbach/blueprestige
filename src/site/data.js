@@ -6,6 +6,13 @@
 
 const A = 'https://media.artsper.com/artwork/'
 
+/**
+ * Adresse qui reçoit les demandes de visite. Partagée entre l'affichage du
+ * bloc contact et la composition du message du formulaire, pour qu'un
+ * changement d'adresse n'ait jamais à être répercuté à deux endroits.
+ */
+export const CONTACT_EMAIL = 'juliana.haggoo@blueprestigemauritus.com'
+
 export const PILIERS = [
   {
     num: '01',
@@ -170,7 +177,7 @@ export const BIENS = [
 export const TOILES = [
   { id: 'summer', titre: 'Summer', meta: 'Huile · 2025 · 120 × 120 × 3 cm', badge: '€2 900', img: 'https://www.julianahaggoo.art/images/summer.png', note: "Un été mauricien réduit à ses masses : chaleur, sable, un bleu qui coupe. Format carré, très présent au-dessus d'un canapé bas." },
   { id: 'theblue', titre: 'The Blue', meta: 'Huile · 2025 · 120 × 120 cm', badge: 'Vendu', img: 'https://www.julianahaggoo.art/images/the_blue.png', note: "Le bleu-signature de Juliana, posé au couteau en couches denses. Cette toile a longtemps tenu le mur d'un living à Flic en Flac." },
-  { id: 'thered', titre: 'The Red', meta: 'Huile · 2025 · 130 × 130 cm', badge: 'Vendu', img: "uploads/Capture d'écran 2026-08-02 à 19.21.40.png", note: 'Le pendant rouge de The Blue : disques de rouge posés au couteau, dense au bord et respirant à gauche — même matière, température opposée.' },
+  { id: 'thered', titre: 'The Red', meta: 'Huile · 2025 · 130 × 130 cm', badge: 'Vendu', img: 'uploads/the-red.jpg', note: 'Le pendant rouge de The Blue : disques de rouge posés au couteau, dense au bord et respirant à gauche — même matière, température opposée.' },
   { id: 'serenity', titre: 'Serenity of Motion', meta: 'Huile · 2025 · 130 × 130 cm', badge: '€3 800', img: A + '2299225_1_l.jpg', note: "Le mouvement retenu juste avant qu'il ne devienne geste. Une pièce qui apaise un grand volume sans l'écraser." },
   { id: 'shadows', titre: 'Blue Shadows', meta: 'Huile · 2024 · 100 × 100 cm', badge: '€2 400', img: A + '2299265_1_l.jpg', note: "Bleu profond sur fond noir, formes superposées et textures riches : le contraste attire l'œil et tient un mur à lui seul." },
   { id: 'pink', titre: 'Whispers of Pink', meta: 'Huile · 2024 · 100 × 100 cm', badge: '€2 200', img: A + '2299234_1_l.jpg', note: 'Rose poudré et blancs cassés — la toile qui réchauffe une pièce entièrement claire.' },

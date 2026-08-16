@@ -23,10 +23,10 @@ export function renderConcept() {
 }
 
 /**
- * @param {{ filtres: {key:string,label:string,bg:string,fg:string}[], biensVus: object[], artPairing: boolean, showPrices: boolean }} ctx
+ * @param {{ filtres: {key:string,label:string,bg:string,fg:string}[], biensVus: object[], showPrices: boolean }} ctx
  */
 export function renderBiens(ctx) {
-  const { filtres, biensVus, artPairing, showPrices } = ctx
+  const { filtres, biensVus, showPrices } = ctx
   return `
   <section id="biens" style="padding:120px 40px;background:#F4F6FE">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:30px;padding-bottom:44px">
@@ -58,15 +58,6 @@ export function renderBiens(ctx) {
                 <span style="padding:7px 13px;background:#F4F6FE;font-size:11px;letter-spacing:.08em;color:#3C4470">${esc(s)}</span>
               `)}
             </div>
-            ${when(artPairing, () => `
-              <div style="display:flex;align-items:center;gap:13px;padding:15px 0;border-top:1px solid rgba(16,26,77,.10);border-bottom:1px solid rgba(16,26,77,.10)">
-                <span style="position:relative;display:block;width:38px;height:38px;flex:none;background:#F4F6FE">${imageSlot({ src: b.oeuvreImg, placeholder: 'Œuvre', fit: 'cover' })}</span>
-                <span style="display:flex;flex-direction:column;gap:3px">
-                  <span style="font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#6B739E">L'œuvre du lieu</span>
-                  <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;line-height:1">${esc(b.oeuvre)}</span>
-                </span>
-              </div>
-            `)}
             <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:4px">
               ${when(showPrices, () => `
                 <span style="font-family:'Cormorant Garamond',serif;font-size:23px;color:#101A4D">${esc(b.prix)}</span>
