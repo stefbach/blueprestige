@@ -31,8 +31,46 @@ montrait une autre pièce — fenêtre à gauche, pas d'armoire. La nouvelle
 conserve le rampant, la fenêtre à gauche et la grande armoire en bois massif
 contre le mur de droite.
 
-**À produire (3 vues)** — arrière-cuisine, salon de la seconde unité, jardin
-clos. Consignes ci-dessous.
+## Objectif : toutes les vues
+
+La cible est la couverture complète — chaque photographie de chaque bien
+dispose de sa mise en scène. État du chantier :
+
+| Bien | Photos | Mises en scène | Restant | Crédits |
+| :--- | ---: | ---: | ---: | ---: |
+| La Villa | 31 | 12 | **19** | 38 |
+| Le Rooftop | 14 | 0 | **14** | 28 |
+| Le Town House | 7 | 0 | **7** | 14 |
+| L'Appartement | 10 | 0 | **10** | 20 |
+| **Total** | **62** | **12** | **50** | **100** |
+
+À 2 crédits la génération. Les vues se produisent par lots de 12 au maximum
+(limite de `generate_image_batch`).
+
+### Villa — les 19 vues restantes
+
+Extérieurs : `ext-facade-01`, `ext-jardin-01`, `ext-terrasse-01`,
+`ext-escalier-01`.
+
+Rez-de-chaussée : `rez-entree-02`, `rez-entree-03`, `rez-entree-04`,
+`rez-entree-05`, `rez-salon-03`, `rez-sam-02`, `rez-sam-03`, `rez-sam-04`,
+`rez-cuisine-02`, `rez-buanderie-01`.
+
+Étage et seconde unité : `etage-salon-02`, `etage-sdb-01`, `etage-sde-01`,
+`annexe-salon-01`, `annexe-salon-02`.
+
+Sur les vues secondaires d'une pièce déjà traitée — deuxième angle du séjour,
+de la salle à manger, de la cuisine —, le mobilier introduit doit être **le
+même que sur la vue principale** : deux angles de la même pièce meublés
+différemment se contredisent et se remarquent immédiatement.
+
+### Les trois autres biens
+
+Aucune mise en scène à ce jour. Ils sont déjà meublés et habités sur les
+photos : le travail y relève davantage du désencombrement et de l'harmonisation
+que de l'ameublement. Créer les dossiers `public/photos/<bien>/staged/` — le
+manifeste les attend déjà (`flatten()` dans `src/tour/properties.js` compose
+`'/photos/<bien>/staged/'`).
 
 ## Consignes de génération
 
@@ -60,11 +98,14 @@ Préambule commun à toutes les consignes :
 | `rez-buanderie-01` | Couloir étroit, carreaux de ciment à motifs, fenêtre à cadre bleu, plan de travail bois et lave-linge à droite, étagères ouvertes à gauche, porte de service au fond | Tout désencombrer (cartons, sacs, bacs plastique, bouilloire). Paniers en fibre alignés, linge plié, panier à linge, une plante. Une buanderie rangée se lit comme un rangement, pas comme un débarras. |
 | `annexe-salon-01` | Parquet foncé, grande baie acier noir sur le jardin et la clôture bois, fenêtre haute étroite à droite, applique murale | Déjà meublé : affiner. Tapis pour asseoir les fauteuils, table basse habillée, coussins, rideaux mieux tombés, une toile au mur nu. |
 
-Deux pièces d'eau restent hors périmètre pour l'instant — la salle de bains
-(`etage-sdb-01`) et la salle d'eau d'étage (`etage-sde-01`) —, la demande
-portant sur les chambres, l'arrière-cuisine, la seconde unité, l'entrée et le
-jardin. Leur consigne serait la même : désencombrer, serviettes assorties,
-plante, tapis, volumétrie strictement conservée.
+| `etage-sdb-01` | Carrelage grand format effet marbre, douche à l'italienne vitrée à gauche, baignoire à droite sous la fenêtre, WC, vasque, sol beige | Désencombrer le plan (panier noir, câbles). Serviettes roulées, peignoir, savon, plateau, orchidée, tapis de bain. |
+| `etage-sde-01` | Armoire de toilette miroir, vasque sur plan maçonné, WC suspendu, grande douche vitrée, fenêtre à cadre bleu, faïence blanche | Serviettes assorties, distributeur, plante, tapis. Volumétrie strictement conservée. |
+| `annexe-salon-02` | Volume traversant, lustre à pampilles, parquet foncé | Cohérent avec `annexe-salon-01` : mêmes fauteuils, même tapis, même table. |
+| `rez-entree-02` à `-05` | Escalier, arche de cuisine, porte à galandage, parquet | Prolonger la mise en scène de `rez-entree-01` : mêmes console, miroir et tapis vus sous d'autres angles. |
+| `rez-salon-03` | Séjour, angle opposé | Mêmes canapé, tapis et tables que `rez-salon-01` / `-02`. |
+| `rez-sam-02` à `-04` | Salle à manger, baie sur terrasse, ouverture sur cuisine | Mêmes table, chaises et art de la table que `rez-sam-01`. |
+| `rez-cuisine-02` | Façades shaker crème, crédence et sol à motifs, plaque gaz | Mêmes accessoires que `rez-cuisine-01` : jarres, planche, plante aromatique. |
+| `etage-salon-02` | Trémie, arrivée d'escalier, plafond cathédrale | Mêmes assises et tapis que `etage-salon-01`. |
 
 Consignes déjà utilisées, conservées pour référence :
 
@@ -77,7 +118,14 @@ Consignes déjà utilisées, conservées pour référence :
 
 ### Extérieurs
 
-| Vue | Remarque |
-| :--- | :--- |
-| `ext-jardin-01` | Pelouse close, clôture bois, arbres au fond, dallage au premier plan. Mise en scène : salon de jardin ou bains de soleil sur le dallage, parasol, jardinières. Le panneau STOP visible au-delà de la clôture est à laisser — il est dans le paysage réel. |
-| `ext-terrasse-01` | **Déconseillé.** Ce n'est pas une terrasse d'agrément mais un espace technique : citerne de gaz, évier extérieur, escalier de service, coffret. Y installer un salon de jardin ferait passer un local de service pour un lieu de vie. Proposition de remplacement : `rez-sam-03`, qui montre la vraie terrasse accessible depuis la salle à manger. |
+| Vue | Ce qui doit rester | Mise en scène demandée |
+| :--- | :--- | :--- |
+| `ext-jardin-01` | Pelouse close, clôture bois, arbres au fond, dallage au premier plan | Salon de jardin ou bains de soleil sur le dallage, parasol, jardinières. Le panneau STOP visible au-delà de la clôture reste : il fait partie du paysage réel. |
+| `ext-facade-01` | Façade deux niveaux, balcon filant, double porte d'entrée sous auvent, pelouse | Jardinières de part et d'autre de l'entrée, allée nette, massifs. Ne rien ajouter qui masque la façade — c'est elle qu'on vient voir. |
+| `ext-terrasse-01` | Deck bois, store banne, évier extérieur, escalier de service, **citerne de gaz** | Rangement, pas ameublement. Désencombrer, enrouler les tuyaux, dégager le plan de l'évier, une plante en pot. La citerne et l'évier restent visibles : c'est un espace de service, et une terrasse de service propre se vend très bien comme telle. Ne pas y installer de salon de jardin. |
+| `ext-escalier-01` | Escalier extérieur desservant l'étage de façon indépendante | Jardinières le long de la volée, éclairage extérieur. Accès indépendant = argument locatif, il doit se lire soigné. |
+
+Sur `ext-terrasse-01`, la consigne s'écarte de la demande initiale d'un salon
+de jardin : la vue est prise sur un local technique, et l'y meubler comme un
+lieu de vie tromperait le visiteur, qui le découvrirait à la première visite.
+Elle est donc mise en scène — mais rangée, pas transformée.
