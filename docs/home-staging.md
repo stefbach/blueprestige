@@ -21,15 +21,18 @@ référencée.
 
 ## État actuel
 
-**Branchées (8 vues, 7 pièces)** — séjour (2 vues), salle à manger, cuisine,
-chambre du rez, salon d'étage, terrasse d'étage, chambre 2.
+**Branchées (12 vues, 11 pièces)** — entrée et escalier, séjour (2 vues),
+salle à manger, cuisine, chambre du rez, salon d'étage, terrasse d'étage,
+chambre 2, chambre 3, chambre 4, chambre 5. Les cinq chambres de la villa
+sont couvertes.
 
-**Écartée** — `staged/etage-chambre3-01.jpg` ne correspond pas à la pièce.
-L'original est une chambre sous rampant, fenêtre et grande armoire en bois
-massif à droite ; l'image montre une autre géométrie, fenêtre à gauche et sans
-armoire. À refaire.
+`staged/etage-chambre3-01.jpg` a été **refaite** : la version précédente
+montrait une autre pièce — fenêtre à gauche, pas d'armoire. La nouvelle
+conserve le rampant, la fenêtre à gauche et la grande armoire en bois massif
+contre le mur de droite.
 
-**À produire (10 vues)** — voir les consignes ci-dessous.
+**À produire (3 vues)** — arrière-cuisine, salon de la seconde unité, jardin
+clos. Consignes ci-dessous.
 
 ## Consignes de génération
 
@@ -54,14 +57,23 @@ Préambule commun à toutes les consignes :
 
 | Vue | Ce qui doit rester | Mise en scène demandée |
 | :--- | :--- | :--- |
-| `rez-entree-01` | Porte d'entrée bois massif à imposte vitrée à gauche, escalier tournant blanc à balustres bois montant à droite, parquet à bâtons rompus foncé | Console fine sous l'escalier, grand miroir, tapis de couloir, lanterne, bouquet de frangipaniers. L'arrivée doit donner le ton. |
 | `rez-buanderie-01` | Couloir étroit, carreaux de ciment à motifs, fenêtre à cadre bleu, plan de travail bois et lave-linge à droite, étagères ouvertes à gauche, porte de service au fond | Tout désencombrer (cartons, sacs, bacs plastique, bouilloire). Paniers en fibre alignés, linge plié, panier à linge, une plante. Une buanderie rangée se lit comme un rangement, pas comme un débarras. |
-| `etage-chambre3-01` | Rampant à gauche, fenêtre et rideau clair à gauche, **grande armoire bois massif à droite**, commode à gauche du lit, parquet chêne clair | Lit habillé en lin blanc, plaid, deux chevets assortis, lampe, tapis berbère, une toile bleue au mur. Reprise de l'image ratée. |
-| `etage-chambre4-01` | Rampant, armoire bois haute à droite du lit, miroir psyché, porte bois foncé à droite, suspension rotin, parquet chêne | Lit en lin, coussins, plaid, tapis clair, chevets, plante en pot. |
-| `etage-chambre5-01` | Rampant, petite fenêtre haute et store gris à gauche, climatiseur mural, porte bois foncé à droite, deux petits chevets bois, parquet chêne | Literie repassée, tête de lit textile, coussins, liseuses, tapis. Faire disparaître l'aspect « lit défait ». |
-| `etage-sdb-01` | Carrelage grand format effet marbre, douche à l'italienne vitrée à gauche, baignoire à droite sous la fenêtre, WC, vasque, sol beige | Désencombrer le plan (panier noir, câbles). Serviettes roulées, peignoir, savon, plateau, orchidée, tapis de bain. |
-| `etage-sde-01` | Armoire de toilette miroir, vasque sur plan maçonné, WC suspendu, grande douche vitrée, fenêtre à cadre bleu, faïence blanche | Serviettes assorties, distributeur, plante, tapis. Volumétrie strictement conservée. |
 | `annexe-salon-01` | Parquet foncé, grande baie acier noir sur le jardin et la clôture bois, fenêtre haute étroite à droite, applique murale | Déjà meublé : affiner. Tapis pour asseoir les fauteuils, table basse habillée, coussins, rideaux mieux tombés, une toile au mur nu. |
+
+Deux pièces d'eau restent hors périmètre pour l'instant — la salle de bains
+(`etage-sdb-01`) et la salle d'eau d'étage (`etage-sde-01`) —, la demande
+portant sur les chambres, l'arrière-cuisine, la seconde unité, l'entrée et le
+jardin. Leur consigne serait la même : désencombrer, serviettes assorties,
+plante, tapis, volumétrie strictement conservée.
+
+Consignes déjà utilisées, conservées pour référence :
+
+| Vue | Ce qui devait rester | Mise en scène appliquée |
+| :--- | :--- | :--- |
+| `rez-entree-01` | Porte d'entrée bois massif à imposte vitrée à gauche, escalier tournant à balustres bois montant à droite, parquet à bâtons rompus foncé | Console sous l'escalier, miroir rond en rotin, tapis de couloir, lanterne, frangipaniers, palmier en pot. Chaise parasite retirée. |
+| `etage-chambre3-01` | Rampant à gauche, fenêtre et rideau clair à gauche, **grande armoire bois massif à droite**, commode à gauche du lit, parquet chêne clair | Lit en lin blanc, plaid, coussins, chevet et lampe, tapis berbère, toile bleue au-dessus du lit. |
+| `etage-chambre4-01` | Rampant, armoire bois haute à droite du lit, miroir psyché, porte bois foncé à droite, suspension rotin, parquet chêne | Lit en lin, coussins, plaid, tapis clair, lampe, cadre au mur, olivier en panier. |
+| `etage-chambre5-01` | Rampant, petite fenêtre haute et store gris à gauche, climatiseur mural, porte bois foncé à droite, deux petits chevets bois, parquet chêne | Literie refaite, tête de lit bois, coussins, deux liseuses, cadre au mur, tapis. |
 
 ### Extérieurs
 
