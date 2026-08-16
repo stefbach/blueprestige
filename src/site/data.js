@@ -11,7 +11,7 @@ const A = 'https://media.artsper.com/artwork/'
  * bloc contact et la composition du message du formulaire, pour qu'un
  * changement d'adresse n'ait jamais à être répercuté à deux endroits.
  */
-export const CONTACT_EMAIL = 'juliana.haggoo@blueprestigemauritus.com'
+export const CONTACT_EMAIL = 'juliana.haggoo@blueprestigemauritius.com'
 
 export const PILIERS = [
   {
