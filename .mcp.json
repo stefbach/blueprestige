@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "blender": {
+      "command": "uvx",
+      "args": ["--python", "3.11", "blender-mcp"],
+      "env": {
+        "UV_PYTHON_PREFERENCE": "only-managed",
+        "BLENDER_HOST": "localhost",
+        "BLENDER_PORT": "9876"
+      }
+    },
+    "unity": {
+      "command": "uvx",
+      "args": ["--from", "mcpforunityserver", "mcp-for-unity"],
+      "env": {}
+    },
+    "build123d": {
+      "command": "uv",
+      "args": ["tool", "run", "--python", "3.12", "build123d-mcp@latest"]
+    },
+    "hello3d": {
+      "command": "node",
+      "args": ["vendor/hello3dmcp-server/server.js"],
+      "env": {
+        "BROWSER_URL": "http://localhost:5173",
+        "WS_PORT": "3001"
+      }
+    }
+  }
+}

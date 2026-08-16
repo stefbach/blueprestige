@@ -1,0 +1,87 @@
+/**
+ * Styles globaux repris du `<helmet>` du bundle de design, à l'identique.
+ * Tout le reste des styles est inline dans les sections, comme dans la maquette.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #101a4d;
+  font-family: 'Jost', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #2a3bc4;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #101a4d;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: #2a3bc4;
+  color: #fff;
+}
+
+@keyframes bpRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bpFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bpLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Repli d'une image absente : même rendu que le placeholder d'`image-slot`. */
+.slot-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: #e8ecfb;
+  color: #6b739e;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.6;
+}
