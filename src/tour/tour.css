@@ -580,13 +580,45 @@ body {
   color: var(--nuit);
 }
 
+/* ─── Sélecteur de langue ────────────────────────────────────── */
+/* Même vocabulaire visuel que les puces de bien, en plus resserré : la langue
+   est un réglage, pas une destination. */
+.lang-switch {
+  display: flex;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lang-chip {
+  padding: 8px 11px;
+  border: 0;
+  background: rgba(11, 18, 54, 0.55);
+  color: var(--texte-doux);
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.lang-chip:hover {
+  color: #fff;
+}
+
+.lang-chip.is-active {
+  background: #fff;
+  color: var(--nuit);
+  cursor: default;
+}
+
 .panel-foot .note {
   display: block;
   margin-bottom: 4px;
 }
 
 @media (max-width: 860px) {
-  .bien-chip {
+  .bien-chip,
+  .lang-chip {
     padding: 7px 10px;
     font-size: 10px;
     letter-spacing: 0.1em;

@@ -21,13 +21,13 @@ export const WALL = 0.1 // demi-épaisseur portée par chaque pièce (cloison = 
 export const LEVELS = [
   {
     id: 0,
-    name: 'Rez-de-chaussée',
+    name: { fr: 'Rez-de-chaussée', en: 'Ground floor' },
     base: 0.0,
     height: 2.8,
   },
   {
     id: 1,
-    name: 'Étage',
+    name: { fr: 'Étage', en: 'First floor' },
     base: 3.0,
     height: 2.4, // à l'égout ; les pièces sous rampant montent jusqu'à `ridge`
     ridge: 4.2,
@@ -42,7 +42,7 @@ export const ROOMS = [
   // ─── Rez-de-chaussée ─────────────────────────────────────────────
   {
     id: 'salon',
-    name: 'Salon / séjour TV',
+    name: { fr: 'Salon / séjour TV', en: 'Living room / TV room' },
     level: 0,
     x0: 0.1, y0: 0.1, x1: 6.3, y1: 5.1,
     floor: 'parquetFonce', ceiling: 'flat',
@@ -50,7 +50,7 @@ export const ROOMS = [
   },
   {
     id: 'sam',
-    name: 'Salle à manger',
+    name: { fr: 'Salle à manger', en: 'Dining room' },
     level: 0,
     x0: 6.5, y0: 0.1, x1: 10.9, y1: 5.1,
     floor: 'parquetFonce', ceiling: 'flat',
@@ -58,7 +58,7 @@ export const ROOMS = [
   },
   {
     id: 'entree',
-    name: 'Entrée / escalier',
+    name: { fr: 'Entrée / escalier', en: 'Entrance / staircase' },
     level: 0,
     x0: 11.1, y0: 0.1, x1: 13.9, y1: 5.1,
     floor: 'parquetChevrons', ceiling: 'open',
@@ -66,7 +66,7 @@ export const ROOMS = [
   },
   {
     id: 'cuisine',
-    name: 'Cuisine',
+    name: { fr: 'Cuisine', en: 'Kitchen' },
     level: 0,
     x0: 10.1, y0: 5.3, x1: 13.9, y1: 9.0,
     floor: 'carreauxCiment', ceiling: 'flat',
@@ -74,7 +74,7 @@ export const ROOMS = [
   },
   {
     id: 'degagement',
-    name: 'Dégagement',
+    name: { fr: 'Dégagement', en: 'Landing' },
     level: 0,
     x0: 6.3, y0: 5.3, x1: 9.9, y1: 9.0,
     floor: 'parquetFonce', ceiling: 'flat',
@@ -82,7 +82,7 @@ export const ROOMS = [
   },
   {
     id: 'chambre0',
-    name: 'Chambre 1 (rez)',
+    name: { fr: 'Chambre 1 (rez)', en: 'Bedroom 1 (ground)' },
     level: 0,
     x0: 0.1, y0: 5.3, x1: 4.1, y1: 10.5,
     floor: 'parquetFonce', ceiling: 'flat',
@@ -90,7 +90,7 @@ export const ROOMS = [
   },
   {
     id: 'sde0',
-    name: 'Salle d’eau (rez)',
+    name: { fr: 'Salle d’eau (rez)', en: 'Shower room (ground)' },
     level: 0,
     x0: 4.3, y0: 5.3, x1: 6.1, y1: 9.0,
     floor: 'gresPierre', ceiling: 'flat',
@@ -98,7 +98,7 @@ export const ROOMS = [
   },
   {
     id: 'buanderie',
-    name: 'Arrière-cuisine / buanderie',
+    name: { fr: 'Arrière-cuisine / buanderie', en: 'Utility / laundry' },
     level: 0,
     x0: 4.3, y0: 9.2, x1: 13.9, y1: 10.5,
     floor: 'carreauxCiment', ceiling: 'flat',
@@ -108,7 +108,7 @@ export const ROOMS = [
   // ─── Étage ────────────────────────────────────────────────────────
   {
     id: 'terrasse1',
-    name: 'Terrasse (étage)',
+    name: { fr: 'Terrasse (étage)', en: 'Terrace (first floor)' },
     level: 1,
     x0: 0.1, y0: 0.1, x1: 13.9, y1: 2.4,
     floor: 'carrelageExt', ceiling: 'open',
@@ -117,7 +117,7 @@ export const ROOMS = [
   },
   {
     id: 'salon1',
-    name: 'Salon d’étage',
+    name: { fr: 'Salon d’étage', en: 'Upstairs sitting room' },
     level: 1,
     x0: 0.1, y0: 2.6, x1: 5.5, y1: 7.4,
     floor: 'parquetChene', ceiling: 'cathedral',
@@ -125,7 +125,7 @@ export const ROOMS = [
   },
   {
     id: 'palier',
-    name: 'Palier',
+    name: { fr: 'Palier', en: 'Landing' },
     level: 1,
     x0: 5.7, y0: 2.6, x1: 8.3, y1: 7.4,
     floor: 'parquetChene', ceiling: 'flat',
@@ -133,7 +133,7 @@ export const ROOMS = [
   },
   {
     id: 'chambre1',
-    name: 'Chambre 2',
+    name: { fr: 'Chambre 2', en: 'Bedroom 2' },
     level: 1,
     x0: 8.5, y0: 2.6, x1: 13.9, y1: 6.0,
     floor: 'parquetChene', ceiling: 'cathedral',
@@ -141,7 +141,7 @@ export const ROOMS = [
   },
   {
     id: 'chambre2',
-    name: 'Chambre 3',
+    name: { fr: 'Chambre 3', en: 'Bedroom 3' },
     level: 1,
     x0: 8.5, y0: 6.2, x1: 13.9, y1: 10.5,
     floor: 'parquetChene', ceiling: 'cathedral',
@@ -149,7 +149,7 @@ export const ROOMS = [
   },
   {
     id: 'chambre3',
-    name: 'Chambre 4',
+    name: { fr: 'Chambre 4', en: 'Bedroom 4' },
     level: 1,
     x0: 0.1, y0: 7.6, x1: 4.1, y1: 10.5,
     floor: 'parquetChene', ceiling: 'cathedral',
@@ -157,7 +157,7 @@ export const ROOMS = [
   },
   {
     id: 'sdb1',
-    name: 'Salle de bains',
+    name: { fr: 'Salle de bains', en: 'Bathroom' },
     level: 1,
     x0: 4.3, y0: 7.6, x1: 6.3, y1: 10.5,
     floor: 'gresBlanc', ceiling: 'flat',
@@ -165,7 +165,7 @@ export const ROOMS = [
   },
   {
     id: 'sde1',
-    name: 'Salle d’eau (étage)',
+    name: { fr: 'Salle d’eau (étage)', en: 'Shower room (first floor)' },
     level: 1,
     x0: 6.5, y0: 7.6, x1: 8.3, y1: 10.5,
     floor: 'gresPierre', ceiling: 'flat',

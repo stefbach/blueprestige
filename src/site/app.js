@@ -8,7 +8,8 @@
  * sans avoir à réattacher d'écouteurs.
  */
 import './base.css'
-import { BIENS, FILTRES, PROPS, TOILES } from './data.js'
+import { BIENS, CONTACT_EMAIL, FILTRES, PROPS, TOILES } from './data.js'
+import { L, applyLang, setLang, t } from '../i18n.js'
 import { renderHeader, renderHero } from './sections/header.js'
 import { renderBiens, renderConcept } from './sections/biens.js'
 import { renderArt, renderLightbox, renderVisite } from './sections/visite.js'
@@ -34,7 +35,7 @@ function viewModel() {
 
   const filtres = FILTRES.map((f) => ({
     key: f.key,
-    label: f.label,
+    label: L(f.label),
     bg: state.coast === f.key ? '#101A4D' : '#fff',
     fg: state.coast === f.key ? '#fff' : '#3C4470',
   }))
@@ -43,14 +44,14 @@ function viewModel() {
 
   const ongletsBiens = BIENS.map((b) => ({
     id: b.id,
-    label: b.nom,
+    label: L(b.nom),
     bg: b.id === actif.id ? '#fff' : 'transparent',
     fg: b.id === actif.id ? '#101A4D' : '#B9C1EC',
   }))
 
   const pieces = actif.pieces.map((r, i) => ({
-    label: r.label,
-    surface: r.surface,
+    label: L(r.label),
+    surface: L(r.surface),
     ga: r.ga,
     bg: i === idx ? '#2A3BC4' : 'rgba(255,255,255,.04)',
     fg: i === idx ? '#fff' : '#B9C1EC',
@@ -73,8 +74,15 @@ function viewModel() {
   }
 }
 
+/** Titre et description suivent la langue : ils comptent pour le partage et l'indexation. */
+function renderHead() {
+  document.title = t('meta.title')
+  document.querySelector('meta[name="description"]')?.setAttribute('content', t('meta.description'))
+}
+
 function render() {
   const ctx = viewModel()
+  renderHead()
   root.innerHTML = [
     renderHeader(),
     renderHero(),
@@ -127,15 +135,50 @@ root.addEventListener('click', (e) => {
     case 'close-lightbox':
       setState({ lightbox: null })
       break
+    case 'lang':
+      // Tout le site est re-rendu depuis l'état : changer de langue ne demande
+      // pas de rechargement, et la position dans la page est conservée.
+      if (setLang(el.dataset.lang)) render()
+      break
     default:
       break
   }
 })
 
+/**
+ * Compose la demande de visite sous forme de lien `mailto:`.
+ *
+ * Le site est entièrement statique : il n'y a pas de back-end pour recevoir un
+ * POST. Ouvrir le client mail du visiteur avec un message déjà rédigé est donc
+ * le seul acheminement qui parte réellement — et il a l'avantage de laisser une
+ * copie dans les envoyés du visiteur.
+ */
+function mailtoDemande(form) {
+  const data = new FormData(form)
+  const champ = (nom) => String(data.get(nom) ?? '').trim()
+
+  // Le message part dans la langue du visiteur : c'est celle dans laquelle il
+  // écrit, et celle dans laquelle Juliana devra lui répondre.
+  const sujet = `${t('mail.subject')} — ${champ('projet')} — ${champ('nom')}`
+  const corps = [
+    `${t('mail.name')} : ${champ('nom')}`,
+    `${t('mail.email')} : ${champ('email')}`,
+    `${t('mail.phone')} : ${champ('telephone') || '—'}`,
+    `${t('mail.project')} : ${champ('projet')}`,
+    '',
+    champ('message') || t('mail.noMessage'),
+  ].join('\r\n')
+
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`
+}
+
 root.addEventListener('submit', (e) => {
   const form = e.target.closest('[data-action="submit-contact"]')
   if (!form) return
   e.preventDefault()
+  // Le mailto avant le re-render : `setState` remplace le formulaire par l'écran
+  // de confirmation, et l'élément submit ne doit pas disparaître avant lecture.
+  window.location.href = mailtoDemande(form)
   setState({ sent: true })
 })
 
@@ -177,4 +220,5 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && state.lightbox) setState({ lightbox: null })
 })
 
+applyLang()
 render()

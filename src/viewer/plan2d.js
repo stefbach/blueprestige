@@ -7,6 +7,7 @@
  * plutôt qu'une transformation de groupe qui retournerait aussi les textes.
  */
 import { FOOTPRINT, LEVELS, OPENINGS, ROOMS, area, levelArea } from '../villa/plan.js'
+import { L, t } from '../i18n.js'
 
 const PAD = 1.4
 const SVG_NS = 'http://www.w3.org/2000/svg'
@@ -119,7 +120,7 @@ export class Plan2D {
         'text-anchor': 'middle', class: 'plan-label', 'font-size': fs,
         ...(rot ? { transform: rot } : {}),
       })
-      label.textContent = room.name
+      label.textContent = L(room.name)
       g.appendChild(label)
 
       const dims = el('text', {
@@ -154,7 +155,7 @@ export class Plan2D {
     // cartouche
     const lvl = LEVELS[this.level]
     const cap = el('text', { x: 0, y: FOOTPRINT.d + 0.75, class: 'plan-caption', 'font-size': 0.34 })
-    cap.textContent = `${lvl.name} — ${levelArea(this.level).toFixed(1)} m² utiles · h.s.p. ${lvl.height.toFixed(2)} m`
+    cap.textContent = `${L(lvl.name)} — ${levelArea(this.level).toFixed(1)} ${t('plan.usable')} · ${t('plan.height')} ${lvl.height.toFixed(2)} m`
     this.svg.appendChild(cap)
 
     // échelle graphique

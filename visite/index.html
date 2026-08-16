@@ -21,12 +21,13 @@
             <span class="name">BLUE PRESTIGE</span>
           </a>
           <div id="bien-switch" class="bien-switch"></div>
+          <div id="lang-switch" class="lang-switch"></div>
           <span class="counter" id="counter">1 / 1</span>
-          <button id="panel-toggle">Plan</button>
+          <button id="panel-toggle" data-i18n="tour.plan">Plan</button>
         </header>
 
-        <button class="nav prev" aria-label="Photo précédente">←</button>
-        <button class="nav next" aria-label="Photo suivante">→</button>
+        <button class="nav prev" data-i18n-aria="tour.prev" aria-label="Photo précédente">←</button>
+        <button class="nav next" data-i18n-aria="tour.next" aria-label="Photo suivante">→</button>
 
         <div id="caption">
           <span class="room"></span>
@@ -45,24 +46,24 @@
           <p class="panel-label" id="bien-sub"></p>
 
           <div id="plan-block">
-            <p class="panel-label">Plan — cliquez une pièce</p>
+            <p class="panel-label" data-i18n="tour.planPick">Plan — cliquez une pièce</p>
             <div id="plan"></div>
           </div>
 
           <div>
-            <p class="panel-label">Parcours</p>
+            <p class="panel-label" data-i18n="tour.itinerary">Parcours</p>
             <div class="steps" id="steps"></div>
           </div>
 
           <div>
-            <p class="panel-label">Toutes les vues</p>
+            <p class="panel-label" data-i18n="tour.allViews">Toutes les vues</p>
             <div class="thumbs" id="thumbs"></div>
           </div>
         </div>
 
         <p class="panel-foot">
           <span class="note"></span>
-          <a href="/#contact">Demander une visite privée</a>
+          <a href="/#contact" data-i18n="tour.request">Demander une visite privée</a>
         </p>
       </aside>
     </div>
