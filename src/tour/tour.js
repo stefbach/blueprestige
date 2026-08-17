@@ -184,11 +184,21 @@ function show(next) {
 
   for (const [i, el] of frames) el.classList.toggle('is-current', i === index)
   frameFor(index).classList.add('is-current')
-  const img = frames.get(index)?.querySelector('img')
+  const frame = frames.get(index)
+  const img = frame?.querySelector(':scope > img')
   if (img) {
-    img.style.animation = 'none'
-    void img.offsetWidth
-    img.style.animation = ''
+    if (frame.querySelector('.compare')) {
+      // Le zoom lent ne porte que sur le calque du dessous. Là où un
+      // comparateur superpose deux vues du même cadrage, il les décale l'une
+      // par rapport à l'autre pendant toute sa durée : le volet ne compare
+      // plus les mêmes points. Sur ces vues, l'image reste fixe.
+      img.style.animation = 'none'
+    } else {
+      // Relancer l'animation à chaque passage sur la photo.
+      img.style.animation = 'none'
+      void img.offsetWidth
+      img.style.animation = ''
+    }
   }
 
   const niveau = L(bien.levels[photo.level]?.name)

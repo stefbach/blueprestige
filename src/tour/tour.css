@@ -485,6 +485,7 @@ body {
     display: block;
   }
 
+
   /* Laisser respirer la croix au-dessus des onglets de niveau. */
   .panel-head {
     padding-right: 60px;
@@ -573,6 +574,24 @@ body {
 }
 
 @media (max-width: 860px) {
+  /* La scène est un plein écran en `cover` : sur un téléphone tenu en
+     portrait, une photo de pièce en paysage n'apparaît plus que par une
+     bande verticale — 35 % de l'image, contre 77 % sur desktop. On affiche
+     donc la photo entière, les bandes libres se confondant avec le fond de
+     la scène ; le décalage vertical dégage le bandeau et la légende.
+     Les deux calques du comparateur changent ensemble : cadrés différemment,
+     le volet avant/après ne superposerait plus les mêmes points de vue.
+     Ce bloc doit rester APRÈS `.compare-after img`, qui impose `cover` à
+     spécificité égale — sinon la surcharge est perdue pour le calque
+     « après » et le comparateur se désaligne. */
+  .frame img,
+  .compare-after img {
+    object-fit: contain;
+    /* 45 % centre la photo dans la bande restée libre entre le bandeau
+       (deux rangées) et la légende, aussi bien en paysage qu'en portrait. */
+    object-position: center 45%;
+  }
+
   /* Le bandeau occupe deux rangées sur mobile : les étiquettes du
      comparateur descendent d'autant pour ne pas passer dessous. */
   .compare-tag {

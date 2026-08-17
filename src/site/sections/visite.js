@@ -38,7 +38,7 @@ export function renderVisite(ctx) {
         <p style="margin:0;font-size:12px;line-height:1.7;color:#8E99DE;font-weight:300">${t('visite.hint')}</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:0;background:rgba(255,255,255,.05)">
-        <div style="position:relative;height:clamp(240px,58vw,420px);background:#0B1236">
+        <div data-piece-photo style="position:relative;height:clamp(240px,58vw,420px);background:#0B1236">
           ${imageSlot({ src: pieceActive.img, placeholder: L(pieceActive.slot) })}
           <span style="position:absolute;top:0;right:0;padding:11px 18px;background:#2A3BC4;color:#fff;font-size:10px;letter-spacing:.22em;text-transform:uppercase;pointer-events:none">${esc(L(pieceActive.label))}</span>
         </div>

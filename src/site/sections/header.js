@@ -71,7 +71,7 @@ export function renderHero() {
         </div>
       </div>
     </div>
-    <div style="position:relative;min-height:clamp(320px,62vw,560px);background:#F4F6FE;animation:bpFade 1.2s ease both">
+    <div data-hero-media style="position:relative;min-height:clamp(320px,62vw,560px);background:#F4F6FE;animation:bpFade 1.2s ease both">
       ${imageSlot({ src: ASSETS.hero, placeholder: t('hero.imageAlt'), fit: 'cover' })}
       <div data-hero-signature style="position:absolute;left:-70px;bottom:64px;display:flex;align-items:center;gap:16px;padding:22px 30px;background:#fff;box-shadow:0 30px 60px -30px rgba(16,26,77,.45);pointer-events:none">
         <span style="display:block;width:2px;height:44px;background:#2A3BC4"></span>
