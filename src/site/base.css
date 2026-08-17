@@ -70,6 +70,54 @@ button {
   }
 }
 
+/* ─── Adaptation mobile ───────────────────────────────────────────
+ * La mise en page vient du bundle de design, entièrement en attributs
+ * `style` : une règle de feuille de style ne peut donc primer qu'avec
+ * `!important`. C'est le prix de la fidélité au pixel de la maquette, et
+ * la raison pour laquelle ce bloc est le seul endroit où il apparaît.
+ *
+ * L'essentiel de l'adaptation ne passe pas par ici : les grilles utilisent
+ * `minmax(min(Npx,100%),1fr)` et les marges des `clamp()`, donc elles se
+ * replient d'elles-mêmes à toutes les largeurs. Ne restent ci-dessous que
+ * les cas qu'une valeur fluide ne sait pas exprimer.
+ */
+@media (max-width: 860px) {
+  /* La pastille de signature déborde volontairement du visuel sur grand
+     écran (`left:-70px`). Sur téléphone, ce débordement sort de l'écran :
+     elle devient un bandeau posé en bas de l'image. */
+  [data-hero-signature] {
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 16px !important;
+  }
+
+  /* Colonne de droite de la visite : une fois les colonnes empilées, le
+     filet vertical de séparation se retrouve au-dessus du texte. */
+  [data-piece-meta] {
+    padding-left: 0 !important;
+    padding-top: 22px !important;
+    border-left: 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+  }
+}
+
+@media (max-width: 720px) {
+  /* Le plan schématique de la visite place chaque pièce par `grid-area`
+     dans une trame de 6 × 4. À la largeur d'un téléphone, les cases
+     deviennent illisibles : on abandonne la trame pour une liste en deux
+     colonnes, qui garde l'ordre de lecture des pièces. */
+  [data-plan-pieces] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: none !important;
+    grid-auto-rows: minmax(62px, auto) !important;
+    height: auto !important;
+  }
+
+  [data-plan-pieces] > button {
+    grid-area: auto !important;
+  }
+}
+
 /* Repli d'une image absente : même rendu que le placeholder d'`image-slot`. */
 .slot-fallback {
   position: absolute;
