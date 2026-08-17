@@ -44,7 +44,7 @@ export function renderBiens(ctx) {
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr));gap:34px">
       ${each(biensVus, (b) => `
         <article style="display:flex;flex-direction:column;background:#fff;animation:bpRise .5s ease both">
-          <div style="position:relative;height:300px;background:#E8ECFB">
+          <div data-card-cover style="position:relative;height:300px;background:#E8ECFB">
             ${imageSlot({ src: b.cover, placeholder: L(b.slot), fit: 'cover' })}
             <span style="position:absolute;top:0;left:0;padding:10px 16px;background:#fff;font-size:10px;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;color:#2A3BC4;pointer-events:none">${esc(L(b.statut))}</span>
           </div>

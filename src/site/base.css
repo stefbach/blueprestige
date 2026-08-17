@@ -91,6 +91,46 @@ button {
     bottom: 16px !important;
   }
 
+  /* ── Recadrage des photos ──────────────────────────────────────
+   * Le fonds photographique mêle paysage (4:3) et portrait (3:4). Un cadre
+   * de proportion fixe en `object-fit: cover` en coupe donc forcément une
+   * partie, et l'écart se creuse sur un écran étroit. Le traitement dépend
+   * de ce que la surface sert à faire.
+   */
+
+  /* Photo de la pièce sélectionnée : on vient l'y regarder, pas la survoler.
+     Une vue en portrait n'y montrait que 51 % de l'image. Elle est affichée
+     entière ; le fond du conteneur étant celui de la section, les bandes
+     libres ne se voient pas.
+     Le cadre passe au carré : dans un cadre en paysage, une photo verticale
+     entière ne serait qu'un timbre cerné de bandes. Au carré, elle gagne près
+     de la moitié de sa surface, sans rien retirer aux vues horizontales. */
+  [data-piece-photo] {
+    aspect-ratio: 1 / 1;
+    height: auto !important;
+  }
+
+  [data-piece-photo] img {
+    object-fit: contain !important;
+  }
+
+  /* Visuel d'accroche : la photo est en portrait, le cadre en paysage —
+     58 % visible. Un cadre plus haut que large lui rend l'essentiel sans
+     transformer l'accueil en mur d'image. */
+  [data-hero-media] {
+    aspect-ratio: 4 / 5;
+    min-height: 0 !important;
+  }
+
+  /* Vignettes de la collection : le recadrage y est le bon parti — une
+     grille de cartes veut des images de même hauteur. Le cadre passe au
+     carré, qui traite les deux orientations à égalité au lieu de sacrifier
+     les couvertures en portrait (64 % visible contre 88 %). */
+  [data-card-cover] {
+    aspect-ratio: 1 / 1;
+    height: auto !important;
+  }
+
   /* Colonne de droite de la visite : une fois les colonnes empilées, le
      filet vertical de séparation se retrouve au-dessus du texte. */
   [data-piece-meta] {
