@@ -300,6 +300,16 @@ document.getElementById('panel-toggle').addEventListener('click', () => {
   document.body.classList.toggle('panel-open')
 })
 
+// Sur mobile le panneau couvre la scène, bouton d'ouverture compris : il lui
+// faut sa propre sortie, à la croix comme au clavier.
+document.getElementById('panel-close').addEventListener('click', () => {
+  document.body.classList.remove('panel-open')
+})
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.body.classList.remove('panel-open')
+})
+
 // ─── Démarrage ────────────────────────────────────────────────────
 applyLang()
 applyStaticLabels()

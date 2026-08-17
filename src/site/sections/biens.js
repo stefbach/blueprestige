@@ -4,13 +4,13 @@ import { L, t } from '../../i18n.js'
 
 export function renderConcept() {
   return `
-  <section id="concept" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:80px;padding:130px 40px;border-top:1px solid rgba(16,26,77,.10)">
+  <section id="concept" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(40px,8vw,80px);padding:clamp(64px,11vw,130px) clamp(20px,5vw,40px);border-top:1px solid rgba(16,26,77,.10)">
     <div style="display:flex;flex-direction:column;gap:22px">
       <span style="font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#2A3BC4">${t('concept.eyebrow')}</span>
       <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,3.4vw,54px);line-height:1.08;letter-spacing:-.01em">${t('concept.title1')}<br />${t('concept.title2')}</h2>
       <p style="margin:0;max-width:36ch;font-size:16px;line-height:1.8;color:#3C4470;font-weight:300;text-wrap:pretty">${t('concept.text')}</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:rgba(16,26,77,.10)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:2px;background:rgba(16,26,77,.10)">
       ${each(PILIERS, (p) => `
         <div style="display:flex;flex-direction:column;gap:16px;padding:44px 34px;background:#fff" class="${hv('background:#F4F6FE')}">
           <span style="font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.2em;color:#2A3BC4">${esc(p.num)}</span>
@@ -29,19 +29,19 @@ export function renderConcept() {
 export function renderBiens(ctx) {
   const { filtres, biensVus, showPrices } = ctx
   return `
-  <section id="biens" style="padding:120px 40px;background:#F4F6FE">
+  <section id="biens" style="padding:clamp(60px,10vw,120px) clamp(20px,5vw,40px);background:#F4F6FE">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:30px;padding-bottom:44px">
       <div style="display:flex;flex-direction:column;gap:18px">
         <span style="font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#2A3BC4">${t('biens.eyebrow')}</span>
         <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,3.4vw,54px);line-height:1.08">${t('biens.title')}</h2>
       </div>
-      <div style="display:flex;gap:2px;background:rgba(16,26,77,.12)">
+      <div style="display:flex;flex-wrap:wrap;gap:2px;background:rgba(16,26,77,.12)">
         ${each(filtres, (f) => `
           <button type="button" data-action="filtre" data-key="${esc(f.key)}" style="padding:14px 26px;border:0;background:${f.bg};color:${f.fg};font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;cursor:pointer">${esc(f.label)}</button>
         `)}
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:34px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr));gap:34px">
       ${each(biensVus, (b) => `
         <article style="display:flex;flex-direction:column;background:#fff;animation:bpRise .5s ease both">
           <div style="position:relative;height:300px;background:#E8ECFB">

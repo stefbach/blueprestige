@@ -298,6 +298,7 @@ export const UI = {
   'tour.itinerary': { fr: 'Parcours', en: 'Itinerary' },
   'tour.allViews': { fr: 'Toutes les vues', en: 'All views' },
   'tour.request': { fr: 'Demander une visite privée', en: 'Request a private viewing' },
+  'tour.close': { fr: 'Fermer le plan', en: 'Close the plan' },
   'tour.prev': { fr: 'Photo précédente', en: 'Previous photo' },
   'tour.next': { fr: 'Photo suivante', en: 'Next photo' },
   'tour.before': { fr: 'Avant', en: 'Before' },

@@ -8,7 +8,7 @@ export function renderStaging(ctx) {
   const clipAfter = `inset(0 ${100 - pct}% 0 0)`
   const handleLeft = `${pct}%`
   return `
-  <section id="staging" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:70px;align-items:center;padding:130px 40px;background:#F4F6FE">
+  <section id="staging" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:clamp(36px,7vw,70px);align-items:center;padding:clamp(64px,11vw,130px) clamp(20px,5vw,40px);background:#F4F6FE">
     <div style="display:flex;flex-direction:column;gap:24px">
       <span style="font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#2A3BC4">${t('staging.eyebrow')}</span>
       <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,3.4vw,54px);line-height:1.08">${t('staging.title1')}<br />${t('staging.title2')}</h2>
@@ -24,7 +24,7 @@ export function renderStaging(ctx) {
         </span>
       </div>
     </div>
-    <div data-staging style="position:relative;height:520px;background:#E8ECFB;cursor:ew-resize;touch-action:none;user-select:none">
+    <div data-staging style="position:relative;height:clamp(300px,64vw,520px);background:#E8ECFB;cursor:ew-resize;touch-action:none;user-select:none">
       <!-- Le clip de la maquette (\`inset(0 X% 0 0)\`) découvre le calque
            supérieur par la GAUCHE, alors que les étiquettes annoncent « Avant »
            à gauche et « Après » à droite. Les deux images sont donc échangées
@@ -46,9 +46,9 @@ export function renderStaging(ctx) {
 
 export function renderJuliana() {
   return `
-  <section id="juliana" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:80px;padding:130px 40px">
+  <section id="juliana" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(40px,8vw,80px);padding:clamp(64px,11vw,130px) clamp(20px,5vw,40px)">
     <div style="display:flex;flex-direction:column;gap:28px">
-      <div style="position:relative;height:560px;background:#F4F6FE">
+      <div style="position:relative;height:clamp(360px,80vw,560px);background:#F4F6FE">
         ${imageSlot({ src: ASSETS.portrait, placeholder: t('juliana.portraitAlt'), shape: 'rect', fit: 'cover' })}
       </div>
       <div style="display:flex;flex-direction:column;gap:8px">
@@ -59,7 +59,7 @@ export function renderJuliana() {
     <div style="display:flex;flex-direction:column;gap:26px;padding-top:10px">
       <span style="font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#2A3BC4">${t('juliana.eyebrow')}</span>
       <h2 style="margin:0;max-width:26ch;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,3.2vw,50px);line-height:1.1">${t('juliana.title')}</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:34px;max-width:900px;font-size:15px;line-height:1.85;color:#3C4470;font-weight:300">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:34px;max-width:900px;font-size:15px;line-height:1.85;color:#3C4470;font-weight:300">
         <div style="display:flex;flex-direction:column;gap:20px">
           <p style="margin:0;text-wrap:pretty">${t('juliana.p1')}</p>
           <p style="margin:0;text-wrap:pretty">${t('juliana.p2')}</p>
@@ -69,7 +69,7 @@ export function renderJuliana() {
           <p style="margin:0;text-wrap:pretty">${t('juliana.p4')}</p>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2px;margin-top:16px;background:rgba(16,26,77,.10)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:2px;margin-top:16px;background:rgba(16,26,77,.10)">
         ${each(REPERES, (j) => `
           <div style="display:flex;flex-direction:column;gap:10px;padding:30px 26px;background:#fff">
             <span style="font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.16em;color:#2A3BC4">${esc(j.annee)}</span>
@@ -86,7 +86,7 @@ export function renderJuliana() {
 export function renderContact(ctx) {
   const { sent } = ctx
   return `
-  <section id="contact" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:80px;padding:130px 40px;background:#101A4D;color:#fff">
+  <section id="contact" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:clamp(40px,8vw,80px);padding:clamp(64px,11vw,130px) clamp(20px,5vw,40px);background:#101A4D;color:#fff">
     <div style="display:flex;flex-direction:column;gap:28px">
       <span style="font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#9AA6E8">${t('contact.eyebrow')}</span>
       <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,3.4vw,54px);line-height:1.08;color:#fff">${t('contact.title1')}<br />${t('contact.title2')}</h2>
@@ -120,7 +120,7 @@ export function renderContact(ctx) {
         </div>
       `)}
       ${when(!sent, () => `
-        <form data-action="submit-contact" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.18)">
+        <form data-action="submit-contact" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:2px;background:rgba(255,255,255,.18)">
           <label style="display:flex;flex-direction:column;gap:9px;padding:22px 24px;background:#101A4D">
             <span style="font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#8E99DE">${t('contact.name')}</span>
             <input type="text" name="nom" required="required" placeholder="${esc(t('contact.namePlaceholder'))}" style="border:0;background:transparent;color:#fff;font-size:15px;outline:none" />
